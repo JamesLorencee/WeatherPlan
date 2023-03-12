@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".RegisterActivity">
+
+    <TextView
+        android:id="@+id/create_acc"
+        android:layout_width="285dp"
+        android:layout_height="42dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="68dp"
+        android:gravity="top"
+        android:text="@string/create_acc"
+        android:textAppearance="@style/create_acc"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/to_get_started"
+        android:layout_width="147dp"
+        android:layout_height="27dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:gravity="top"
+        android:text="@string/to_get_started"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.276"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_acc" />
+
+    <!-- Username TextView and EditText   -->
+    <View
+        android:id="@+id/tv_rectangle_register_username"
+        android:layout_width="311dp"
+        android:layout_height="39dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/rectangle_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/to_get_started" />
+
+    <EditText
+        android:id="@+id/et_register_username"
+        android:layout_width="306dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="4sp"
+        android:background="#00000000"
+        android:hint="Username"
+        android:textColorHint="#C8C8C8"
+        android:inputType="textEmailAddress"
+
+        android:maxLines="1"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_rectangle_register_username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.39"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_rectangle_register_username"
+        app:layout_constraintVertical_bias="0.363" />
+    <!-- Username TextView and EditText   -->
+
+
+    <!--Email Address TextView and EditText-->
+    <View
+        android:id="@+id/tv_rectangle_register_email"
+        android:layout_width="311dp"
+        android:layout_height="39dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rectangle_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_rectangle_register_username" />
+
+    <EditText
+        android:id="@+id/et_register_email"
+        android:layout_width="306dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="4dp"
+        android:autofillHints="emailAddress"
+        android:background="#00000000"
+        android:hint="Email Address"
+        android:textColorHint="#C8C8C8"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_rectangle_register_email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.39"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_rectangle_register_email"
+        app:layout_constraintVertical_bias="0.454" />
+    <!--Email Address TextView and EditText-->
+
+    <!--Password TextView and EditText-->
+    <View
+        android:id="@+id/tv_rectangle_register_password"
+        android:layout_width="311dp"
+        android:layout_height="39dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/rectangle_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_rectangle_register_email" />
+
+    <EditText
+        android:id="@+id/et_register_password"
+        android:layout_width="306dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="4dp"
+        android:background="#00000000"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColorHint="#C8C8C8"
+        android:maxLines="1"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_rectangle_register_password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.39"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_rectangle_register_password"
+        app:layout_constraintVertical_bias="0.363" />
+    <!--Password TextView and EditText-->
+
+
+    <!--Confirm Password TextView and EditText-->
+    <View
+        android:id="@+id/tv_rectangle_register_confirmPassword"
+        android:layout_width="311dp"
+        android:layout_height="39dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/rectangle_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_rectangle_register_password" />
+
+    <EditText
+        android:id="@+id/et_register_confirmPassword"
+        android:layout_width="306dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="4dp"
+        android:background="#00000000"
+        android:hint="Confirm Password"
+        android:textColorHint="#C8C8C8"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_rectangle_register_confirmPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.39"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_rectangle_register_confirmPassword"
+        app:layout_constraintVertical_bias="0.272" />
+    <!--Confirm Password TextView and EditText-->
+
+    <!-- Sign-up Button -->
+    <Button
+        android:id="@+id/signup_btn"
+        android:layout_width="243dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/tv_rectangle_register_confirmPassword"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/bluebutton"
+        android:fontFamily="sans-serif-black"
+        android:text="Sign-Up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.458"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_rectangle_register_confirmPassword" />
+    <!-- Sign-up Button -->
+
+
+    <!--Back to Login Button-->
+    <Button
+        android:id="@+id/backLogin_btn"
+        android:layout_width="251dp"
+        android:layout_height="41dp"
+        android:layout_below="@+id/signup_btn"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Back to Login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_btn" />
+    <!--Back to Login Button-->
+</androidx.constraintlayout.widget.ConstraintLayout>
