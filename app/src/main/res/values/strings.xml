@@ -7,4 +7,8 @@
     <string name="create_acc">Create Account </string>
 
     <string name ="to_get_started">To get started</string>
+    <string name="option_account">Account</string>
+    <string name="option_add">Add</string>
+    <string name="option_list">List</string>
+    <string name="option_today">Today</string>
 </resources>
