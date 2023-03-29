@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,20 +11,19 @@
         android:id="@+id/cloud"
         android:layout_width="218dp"
         android:layout_height="184dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="75dp"
+        android:layout_marginStart="75dp"
         android:layout_marginTop="1dp"
-        android:background="@drawable/cloudlogo"
-        android:clipToOutline="true" />
+        android:background="@drawable/cloudlogo" />
 
     <View
         android:id="@+id/tv_rectangle_email"
         android:layout_width="349dp"
         android:layout_height="38dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="254dp"
         android:background="@drawable/rectangle_textview" />
 
@@ -33,13 +31,13 @@
         android:id="@+id/et_emailAddress"
         android:layout_width="306dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="28dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="262dp"
         android:autofillHints="emailAddress"
         android:background="#00000000"
-        android:hint="Email Address"
+        android:hint="@string/main_email_address"
         android:textColorHint="#C8C8C8"
         android:inputType="textEmailAddress"
         android:maxLines="1" />
@@ -50,9 +48,9 @@
         android:id="@+id/tv_rectangle_password"
         android:layout_width="352dp"
         android:layout_height="39dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="23dp"
+        android:layout_marginStart="23dp"
         android:layout_marginTop="314dp"
         android:background="@drawable/rectangle_textview" />
 
@@ -60,14 +58,15 @@
         android:id="@+id/et_password"
         android:layout_width="305dp"
         android:layout_height="28dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="27dp"
+        android:layout_marginStart="27dp"
         android:layout_marginTop="320dp"
         android:background="#00000000"
-        android:hint="Password"
+        android:hint="@string/main_password"
         android:textColorHint="#C8C8C8"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:autofillHints="password" />
     <!-- Password TextView and EditText   -->
 
     <!-- Login Button   -->
@@ -86,7 +85,7 @@
         android:layout_marginEnd="84dp"
         android:background="@drawable/bluebutton"
         android:fontFamily="sans-serif-black"
-        android:text="Login" />
+        android:text="@string/main_login" />
 
     <Button
         android:id="@+id/register_btn"
@@ -99,7 +98,7 @@
         android:layout_marginTop="23dp"
         android:layout_marginEnd="88dp"
         android:fontFamily="sans-serif-black"
-        android:text="Create Account" />
+        android:text="@string/main_create_account" />
     <!-- Create Account Button   -->
 
 </RelativeLayout>
