@@ -8,39 +8,40 @@
 
     <!-- Email Address Textview and EditText -->
 
-    <RelativeLayout
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/cloud"
-        android:layout_width="218dp"
+        android:layout_width="wrap_content"
         android:layout_height="184dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="80dp"
         android:layout_marginTop="1dp"
-        android:layout_marginEnd="113dp"
-        android:background="@drawable/weatherplanlogo" />
+        android:src="@drawable/weatherplanlogo" />
 
     <!-- Email Address  -->
 
     <!-- Password TextView and EditText   -->
     <View
         android:id="@+id/tv_rectangle_email"
-        android:layout_width="349dp"
+        android:layout_width="wrap_content"
         android:layout_height="38dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginTop="253dp"
         android:background="@drawable/rectangle_textview" />
 
     <EditText
         android:id="@+id/et_emailAddress"
-        android:layout_width="306dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/tv_rectangle_email"
         android:layout_alignTop="@+id/tv_rectangle_email"
         android:layout_alignBottom="@+id/tv_rectangle_email"
+        android:layout_alignEnd="@+id/tv_rectangle_email"
         android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="6dp"
         android:autofillHints="emailAddress"
@@ -59,11 +60,12 @@
 
     <View
         android:id="@+id/tv_rectangle_password"
-        android:layout_width="352dp"
+        android:layout_width="wrap_content"
         android:layout_height="39dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
         android:layout_marginTop="312dp"
         android:background="@drawable/rectangle_textview" />
 
@@ -72,9 +74,11 @@
         android:layout_width="305dp"
         android:layout_height="28dp"
         android:layout_alignStart="@+id/tv_rectangle_password"
+        android:layout_alignEnd="@+id/tv_rectangle_password"
         android:layout_alignTop="@+id/tv_rectangle_password"
         android:layout_alignBottom="@+id/tv_rectangle_password"
         android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="6dp"
         android:autofillHints="password"
@@ -90,9 +94,9 @@
         android:layout_below="@+id/tv_rectangle_password"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="67dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="46dp"
-        android:layout_marginEnd="84dp"
+        android:layout_marginEnd="70dp"
         android:background="@drawable/bluebutton"
         android:fontFamily="sans-serif-black"
         android:text="@string/main_login" />
@@ -104,9 +108,9 @@
         android:layout_below="@+id/login_btn"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="68dp"
+        android:layout_marginStart="90dp"
         android:layout_marginTop="23dp"
-        android:layout_marginEnd="88dp"
+        android:layout_marginEnd="90dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/main_create_account" />
     <!-- Create Account Button   -->

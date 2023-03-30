@@ -1,14 +1,10 @@
 package ph.edu.dlsu.mobdeve.seril.james.weatherplan
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Website.URL
 import android.util.Log
-import android.view.View
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.json.JSONObject
@@ -31,7 +27,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // To Run the weather API
-        weatherTask().execute()
+        WeatherTask().execute()
 
         scheduleAdapter = ScheduleAdapter(this, scheduleList)
 
@@ -47,13 +43,16 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-// CLASS TO CALL THE API VARIABLES (NOT WORKING)
-    inner class weatherTask() : AsyncTask<String, Void, String>(){
+// CLASS TO CALL THE API VARIABLES
+    @SuppressLint("StaticFieldLeak")
+    inner class WeatherTask() : AsyncTask<String, Void, String>(){
 
+        @Deprecated("Deprecated in Java")
         override fun onPreExecute() {
             super.onPreExecute()
             Log.d ("Weather", "OnPreExecute")
         }
+        @Deprecated("Deprecated in Java")
         override fun doInBackground(vararg p0: String?): String? {
             var response: String?
             try {
@@ -66,29 +65,29 @@ class HomeActivity : AppCompatActivity() {
             return response
         }
 
-        override fun onPostExecute(result: String?) {
+        @Deprecated("Deprecated in Java")
+        override fun onPostExecute(result: String) {
             super.onPostExecute(result)
             try{
-                val jsonObj = JSONObject(result)
+                val jsonObj = JSONObject(result).getJSONArray("list").getJSONObject(1)
                 val main = jsonObj.getJSONObject("main")
                 val weather = jsonObj.getJSONArray("weather").getJSONObject(0)
-                val temp = main.getString("temp") + "°C"
+                val temp = main.getInt("temp").toString() + "°C"
                 val weatherDescription = weather.getString("description")
 
-                findViewById<TextView>(R.id.weather_temperature).text = temp
-                findViewById<TextView>(R.id.weather_description).text = weatherDescription
+                binding.weatherTemperature.text = temp
+                binding.weatherDescription.text = weatherDescription
 
-
-                binding.weatherDescription.text = temp
-                binding.weatherTemperature.text = weatherDescription
                 Log.d ("Weather", "OnPostExecute")
             }
             catch(e : Exception){
+                println(JSONObject(result).getJSONArray("list"))
+                println(JSONObject(result).getJSONArray("list").getJSONObject(1).getJSONObject("main"))
             }
         }
 
     }
-    // CLASS TO CALL THE API VARIABLES (NOT WORKING)
+    // CLASS TO CALL THE API VARIABLES
 
     // Dummy Data for Schedule //
     private fun getSchedule() = ArrayList<Schedule>().apply {
