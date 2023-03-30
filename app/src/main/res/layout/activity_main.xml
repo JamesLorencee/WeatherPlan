@@ -7,72 +7,82 @@
     tools:context=".MainActivity">
 
     <!-- Email Address Textview and EditText -->
+
     <RelativeLayout
         android:id="@+id/cloud"
         android:layout_width="218dp"
         android:layout_height="184dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="75dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="80dp"
         android:layout_marginTop="1dp"
-        android:background="@drawable/cloudlogo" />
+        android:layout_marginEnd="113dp"
+        android:background="@drawable/weatherplanlogo" />
 
+    <!-- Email Address  -->
+
+    <!-- Password TextView and EditText   -->
     <View
         android:id="@+id/tv_rectangle_email"
         android:layout_width="349dp"
         android:layout_height="38dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="254dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="253dp"
         android:background="@drawable/rectangle_textview" />
 
     <EditText
         android:id="@+id/et_emailAddress"
         android:layout_width="306dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="262dp"
+        android:layout_alignStart="@+id/tv_rectangle_email"
+        android:layout_alignTop="@+id/tv_rectangle_email"
+        android:layout_alignBottom="@+id/tv_rectangle_email"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="6dp"
         android:autofillHints="emailAddress"
         android:background="#00000000"
         android:hint="@string/main_email_address"
-        android:textColorHint="#C8C8C8"
         android:inputType="textEmailAddress"
-        android:maxLines="1" />
-    <!-- Email Address  -->
+        android:maxLines="1"
+        android:textColorHint="#C8C8C8" />
 
-    <!-- Password TextView and EditText   -->
-    <View
-        android:id="@+id/tv_rectangle_password"
-        android:layout_width="352dp"
-        android:layout_height="39dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="314dp"
-        android:background="@drawable/rectangle_textview" />
-
-    <EditText
-        android:id="@+id/et_password"
-        android:layout_width="305dp"
-        android:layout_height="28dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="320dp"
-        android:background="#00000000"
-        android:hint="@string/main_password"
-        android:textColorHint="#C8C8C8"
-        android:inputType="textPassword"
-        android:autofillHints="password" />
     <!-- Password TextView and EditText   -->
 
     <!-- Login Button   -->
     <!-- Login Button   -->
 
     <!-- Create Account Button   -->
+
+    <View
+        android:id="@+id/tv_rectangle_password"
+        android:layout_width="352dp"
+        android:layout_height="39dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="312dp"
+        android:background="@drawable/rectangle_textview" />
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="305dp"
+        android:layout_height="28dp"
+        android:layout_alignStart="@+id/tv_rectangle_password"
+        android:layout_alignTop="@+id/tv_rectangle_password"
+        android:layout_alignBottom="@+id/tv_rectangle_password"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="6dp"
+        android:autofillHints="password"
+        android:background="#00000000"
+        android:hint="@string/main_password"
+        android:inputType="textPassword"
+        android:textColorHint="#C8C8C8" />
+
     <Button
         android:id="@+id/login_btn"
         android:layout_width="260dp"
