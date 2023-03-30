@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/options_menu"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_marginBottom="20dp"
+    android:orientation="horizontal"
+    android:background="@drawable/taskbar"
+    android:layout_centerInParent="true"
+    android:layout_centerHorizontal="true"
+    android:gravity="center">
+
+    
+    <LinearLayout
+        android:id="@+id/list_todayTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginEnd="45dp"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/options_calendar"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:text="@string/option_today"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/listTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginEnd="45dp"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/options_list"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:text="@string/option_list"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/list_addTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginEnd="45dp"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/options_add"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:text="@string/option_add"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/list_accountTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/options_account"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:text="@string/option_account"/>
+
+    </LinearLayout>
+
+</LinearLayout>

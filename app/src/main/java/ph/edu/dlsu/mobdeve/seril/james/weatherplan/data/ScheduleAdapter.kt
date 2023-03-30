@@ -2,9 +2,11 @@ package ph.edu.dlsu.mobdeve.seril.james.weatherplan.data
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.ViewScheduleActivity
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ItemListBinding
 
@@ -23,6 +25,18 @@ class ScheduleAdapter (private val context: Context,
     override fun onBindViewHolder(holder: ScheduleAdapter.ViewHolder,
                                   position: Int) {
         holder.bindItems(scheduleList[position])
+
+        holder.itemView.setOnClickListener{
+            val intent = Intent(context, ViewScheduleActivity::class.java)
+
+            intent.putExtra("title", scheduleList[position].title)
+            intent.putExtra("location", scheduleList[position].location)
+            intent.putExtra("time", scheduleList[position].getTimeString())
+            intent.putExtra("date", scheduleList[position].getDateString())
+            intent.putExtra("notes", scheduleList[position].notes)
+
+            context.startActivity(intent)
+        }
     }
 
     inner class ViewHolder(private val itemBinding: ItemListBinding):

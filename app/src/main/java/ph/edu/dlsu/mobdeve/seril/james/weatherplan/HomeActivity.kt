@@ -37,7 +37,7 @@ class HomeActivity : AppCompatActivity() {
         binding.scheduleList.adapter = scheduleAdapter
 
         // When clicked, will move to list activity page //
-        binding.optionList.setOnClickListener{
+        binding.optionsMenu.listTv.setOnClickListener{
             val intent = Intent(this, ListActivity::class.java)
             startActivity(intent)
         }
@@ -94,6 +94,7 @@ class HomeActivity : AppCompatActivity() {
         add(Schedule(
             "MOBDEVE",
             "GK304B",
+            Schedule.EventType.CLASS,
             "Mobile Development with Sir Marco",
             "2023-03-31",
             "16:15"
@@ -101,6 +102,7 @@ class HomeActivity : AppCompatActivity() {
         add(Schedule(
             "Title",
             "Location",
+            Schedule.EventType.EVENT,
             "Notes",
             "2023-03-31",
             "10:00"
@@ -108,6 +110,7 @@ class HomeActivity : AppCompatActivity() {
         add(Schedule(
             "Birthday Party",
             "BGC",
+            Schedule.EventType.SOCIAL_GATHERING,
             "Notes",
             "2023-03-31",
             "22:00"

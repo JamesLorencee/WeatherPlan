@@ -8,83 +8,23 @@
     tools:context=".ListActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/options"
+        app:layout_constraintBottom_toTopOf="@id/options_menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/options"
-        android:layout_width="390dp"
-        android:layout_height="80dp"
+    <include
+        android:id="@id/options_menu"
+        layout="@layout/layout_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
-        android:orientation="horizontal"
-        android:background="@drawable/taskbar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_centerInParent="true"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        >
-
-        <TextView
-            android:id="@+id/list_todayTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:fontFamily="sans-serif"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:text="@string/option_today"
-            android:drawablePadding="3dp"
-            android:layout_marginEnd="45dp"
-            app:drawableTopCompat="@drawable/options_calendar"
-            />
-
-        <TextView
-            android:id="@+id/listTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:fontFamily="sans-serif"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:text="@string/option_list"
-            android:drawablePadding="3dp"
-            android:layout_marginEnd="45dp"
-            app:drawableTopCompat="@drawable/options_list"
-            />
-
-        <TextView
-            android:id="@+id/list_addTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:fontFamily="sans-serif"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:text="@string/option_add"
-            android:drawablePadding="3dp"
-            android:layout_marginEnd="45dp"
-            app:drawableTopCompat="@drawable/options_add"
-            />
-
-        <TextView
-            android:id="@+id/list_accountTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:fontFamily="sans-serif"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:text="@string/option_account"
-            android:drawablePadding="3dp"
-            app:drawableTopCompat="@drawable/options_account"
-            />
-
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

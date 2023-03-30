@@ -8,8 +8,17 @@ import java.util.Date
     date must be in "yyyy-mm-dd" format
     time must be in "hh:mm" format
 */
-class Schedule (var title: String, var location: String, var notes: String, date:String, time:String) {
+class Schedule (var title: String, var location: String, var event: EventType, var notes: String, date:String, time:String) {
     private var datetime: Date = getDatetime(date, time)
+
+    enum class EventType {
+        EVENT,
+        MEETING,
+        SOCIAL_GATHERING,
+        CLASS,
+        HOLIDAY,
+        MISCELLANEOUS
+    }
 
     @SuppressLint("SimpleDateFormat")
     private fun getDatetime (date:String, time:String): Date {
