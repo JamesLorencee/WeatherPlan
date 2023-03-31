@@ -24,6 +24,12 @@ class ListActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // Directs to Profile Activity
+        binding.optionsMenu.listAccountTv.setOnClickListener{
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
 
     }
 
