@@ -8,8 +8,8 @@ import java.util.Date
     date must be in "yyyy-mm-dd" format
     time must be in "hh:mm" format
 */
-class Schedule (var title: String, var location: String, var event: EventType, var notes: String, date:String, time:String) {
-    private var datetime: Date = getDatetime(date, time)
+class Schedule (var id: Int, var title: String, var location: String?, var event: EventType, date:String, time:String, var notes: String?) {
+    var datetime: Date = getDatetime(date, time)
 
     enum class EventType {
         EVENT,
@@ -17,8 +17,10 @@ class Schedule (var title: String, var location: String, var event: EventType, v
         SOCIAL_GATHERING,
         CLASS,
         HOLIDAY,
-        MISCELLANEOUS
+        MISCELLANEOUS;
     }
+
+    constructor() : this (999, "", null, EventType.MISCELLANEOUS, "1970-01-01", "00:00", null)
 
     @SuppressLint("SimpleDateFormat")
     private fun getDatetime (date:String, time:String): Date {
@@ -34,5 +36,16 @@ class Schedule (var title: String, var location: String, var event: EventType, v
     @SuppressLint("SimpleDateFormat")
     fun getTimeString(): String {
         return SimpleDateFormat("hh:mm a").format(datetime)
+    }
+    fun getEnumType (s: String): EventType {
+        return when (s.uppercase()) {
+            "EVENT" -> EventType.EVENT
+            "MEETING" -> EventType.MEETING
+            "SOCIAL_GATHERING" -> EventType.SOCIAL_GATHERING
+            "CLASS" -> EventType.CLASS
+            "HOLIDAY" -> EventType.HOLIDAY
+            "MISCELLANEOUS" -> EventType.MISCELLANEOUS
+            else -> EventType.MISCELLANEOUS
+        }
     }
 }

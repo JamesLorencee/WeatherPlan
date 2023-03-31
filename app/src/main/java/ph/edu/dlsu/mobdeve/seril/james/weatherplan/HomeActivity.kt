@@ -8,8 +8,9 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.json.JSONObject
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAO
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOSQLiteImplementation
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.ScheduleAdapter
-import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityHomeBinding
 import java.net.URL
 
@@ -18,7 +19,7 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var scheduleAdapter: ScheduleAdapter
-    private var scheduleList = getSchedule()
+    private lateinit var scheduleDAO: ScheduleDAO
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,10 +27,12 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        scheduleDAO = ScheduleDAOSQLiteImplementation(applicationContext)
+
         // To Run the weather API
         WeatherTask().execute()
 
-        scheduleAdapter = ScheduleAdapter(this, scheduleList)
+        scheduleAdapter = ScheduleAdapter(this, scheduleDAO.getSchedules())
 
         binding.scheduleList.layoutManager = LinearLayoutManager(applicationContext,
             LinearLayoutManager.VERTICAL,
@@ -102,34 +105,5 @@ class HomeActivity : AppCompatActivity() {
 
     }
     // CLASS TO CALL THE API VARIABLES
-
-    // Dummy Data for Schedule //
-    private fun getSchedule() = ArrayList<Schedule>().apply {
-        add(Schedule(
-            "MOBDEVE",
-            "GK304B",
-            Schedule.EventType.CLASS,
-            "Mobile Development with Sir Marco",
-            "2023-03-31",
-            "16:15"
-        ))
-        add(Schedule(
-            "Title",
-            "Location",
-            Schedule.EventType.EVENT,
-            "Notes",
-            "2023-03-31",
-            "10:00"
-        ))
-        add(Schedule(
-            "Birthday Party",
-            "BGC",
-            Schedule.EventType.SOCIAL_GATHERING,
-            "Notes",
-            "2023-03-31",
-            "22:00"
-        ))
-    }
-
 
 }
