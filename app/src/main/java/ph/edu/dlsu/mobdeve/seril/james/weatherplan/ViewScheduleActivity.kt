@@ -31,5 +31,15 @@ class ViewScheduleActivity : AppCompatActivity() {
             val intent = Intent(this, ListActivity::class.java)
             startActivity(intent)
         }
+
+        binding.optionsMenu.listAddTv.setOnClickListener{
+            val intent = Intent(this, AddScheduleActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.optionsMenu.listAccountTv.setOnClickListener{
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

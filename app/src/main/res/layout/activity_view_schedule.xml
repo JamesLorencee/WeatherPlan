@@ -11,115 +11,155 @@
         android:id="@+id/weather_logo"
         android:layout_width="96dp"
         android:layout_height="96dp"
-        android:src="@drawable/cloudlogo"
         android:layout_marginStart="10dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/cloudlogo"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/weather_temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="44sp"
-        android:fontFamily="sans-serif-black"
         android:layout_marginStart="5dp"
         android:layout_marginBottom="11dp"
-        app:layout_constraintStart_toEndOf="@id/weather_logo"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/white"
+        android:textSize="44sp"
         app:layout_constraintBottom_toBottomOf="@id/weather_logo"
-        />
+        app:layout_constraintStart_toEndOf="@id/weather_logo" />
 
     <TextView
         android:id="@+id/weather_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:fontFamily="sans-serif-black"
         android:layout_marginStart="5dp"
         android:layout_marginBottom="17dp"
-        app:layout_constraintStart_toEndOf="@id/weather_temperature"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@id/weather_logo"
-        />
+        app:layout_constraintStart_toEndOf="@id/weather_temperature" />
 
     <View
         android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#000"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/weather_logo"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weather_logo" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/view_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="36sp"
-        android:textColor="@color/black"
         android:fontFamily="sans-serif-medium"
         android:text="Title"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/black"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/view_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:fontFamily="sans-serif"
+        android:fontFamily="sans-serif-medium"
         android:text="Location"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_title"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_title" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/view_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:fontFamily="sans-serif"
-        android:text="10:00am"
         android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="sans-serif-medium"
+        android:text="10:00am"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_location"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_location" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/view_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:fontFamily="sans-serif"
-        android:text="March 31"
         android:layout_marginTop="5dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="sans-serif-medium"
+        android:text="March 31"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_time"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_time" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/view_notes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:fontFamily="sans-serif"
-        android:text="Notes: "
         android:layout_margin="5dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="sans-serif-medium"
+        android:text="Notes: "
+        android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_date"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_date" />
+
+    <Button
+        android:id="@+id/editSchedule_btn"
+        android:layout_width="115dp"
+        android:layout_height="53dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="68dp"
+        android:background="@drawable/bluebutton"
+        android:fontFamily="sans-serif-black"
+        android:text="Edit Schedule"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/options_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/cancelSchedule_btn" />
+
+    <Button
+        android:id="@+id/shareSchedule_btn"
+        android:layout_width="115dp"
+        android:layout_height="53dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="68dp"
+        android:background="@drawable/bluebutton"
+        android:fontFamily="sans-serif-black"
+        android:text="Share to facebook"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/options_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toEndOf="@+id/editSchedule_btn" />
+
+    <Button
+        android:id="@+id/cancelSchedule_btn"
+        android:layout_width="115dp"
+        android:layout_height="53dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="68dp"
+        android:background="@drawable/redbutton"
+        android:fontFamily="sans-serif-black"
+        android:text="Cancel Schedule"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/options_menu"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <include
         android:id="@id/options_menu"
@@ -130,7 +170,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

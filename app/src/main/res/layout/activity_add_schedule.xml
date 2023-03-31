@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_page"
+    tools:context=".AddScheduleActivity">
+
+    <TextView
+        android:id="@+id/selectDate"
+        android:layout_width="125dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Select Date"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/dateView"
+        android:layout_width="228dp"
+        android:layout_height="154dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/rectangle_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.196"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selectDate" />
+
+    <DatePicker
+        android:id="@+id/date_Picker"
+        android:layout_width="225dp"
+        android:layout_height="146dp"
+        android:layout_marginTop="4dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/dateView"
+        app:layout_constraintTop_toTopOf="@+id/dateView" />
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="94dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:text="Title"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.113"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateView" />
+
+    <View
+        android:id="@+id/TitleView"
+        android:layout_width="311dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/rectangle_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+    <EditText
+        android:id="@+id/et_addTitle"
+        android:layout_width="305dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="4dp"
+        android:background="#00000000"
+        android:hint="Add Title"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/TitleView"
+        app:layout_constraintStart_toStartOf="@+id/TitleView"
+        app:layout_constraintTop_toTopOf="@+id/TitleView" />
+
+    <TextView
+        android:id="@+id/AddTitle"
+        android:layout_width="94dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Title"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.113"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateView" />
+
+    <TextView
+        android:id="@+id/LocationTextView"
+        android:layout_width="94dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Location"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TitleView" />
+
+    <View
+        android:id="@+id/LocationView"
+        android:layout_width="311dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/rectangle_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LocationTextView" />
+
+    <EditText
+        android:id="@+id/et_addLocation"
+        android:layout_width="304dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:background="#00000000"
+        android:hint="Add Location"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/LocationView"
+        app:layout_constraintTop_toTopOf="@+id/LocationView" />
+
+    <TextView
+        android:id="@+id/TimeTextView"
+        android:layout_width="94dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Time"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.113"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LocationView" />
+
+    <View
+        android:id="@+id/timeView"
+        android:layout_width="235dp"
+        android:layout_height="119dp"
+        android:background="@drawable/rectangle_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.204"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TimeTextView" />
+
+    <TimePicker
+        android:id="@+id/add_timePicker"
+        android:layout_width="230dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:timePickerMode="spinner"
+        app:layout_constraintEnd_toEndOf="@+id/timeView"
+        app:layout_constraintHorizontal_bias="0.171"
+        app:layout_constraintStart_toStartOf="@+id/timeView"
+        app:layout_constraintTop_toTopOf="@+id/timeView" />
+
+    <TextView
+        android:id="@+id/EventTextView"
+        android:layout_width="94dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Event Type"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        app:layout_constraintStart_toEndOf="@+id/TimeTextView"
+        app:layout_constraintTop_toBottomOf="@+id/LocationView" />
+
+    <View
+        android:id="@+id/eventView"
+        android:layout_width="128dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:background="@drawable/rectangle_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EventTextView" />
+
+    <Spinner
+        android:id="@+id/eventType_spinner"
+        android:layout_width="115dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="5dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/eventView"
+        app:layout_constraintTop_toTopOf="@+id/eventView" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="94dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Notes"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timeView" />
+
+    <View
+        android:id="@+id/notesView"
+        android:layout_width="380dp"
+        android:layout_height="191dp"
+        android:background="@drawable/rectangle_textview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.38"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <EditText
+        android:id="@+id/et_addNotes"
+        android:layout_width="363dp"
+        android:layout_height="171dp"
+        android:layout_marginTop="4dp"
+        android:background="#00000000"
+        android:gravity="top|left"
+        android:hint="Add your notes"
+        android:inputType="textCapSentences|textMultiLine"
+        app:layout_constraintEnd_toEndOf="@+id/notesView"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="@+id/notesView"
+        app:layout_constraintTop_toTopOf="@+id/notesView" />
+
+    <Button
+        android:id="@+id/addSchedCancel_btn"
+        android:layout_width="149dp"
+        android:layout_height="46dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="36dp"
+        android:background="@drawable/redbutton"
+        android:fontFamily="sans-serif-medium"
+        android:text="Cancel"
+        android:textSize="21dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notesView"
+        app:layout_constraintVertical_bias="0.837" />
+
+    <Button
+        android:id="@+id/addSchedSave_btn"
+        android:layout_width="149dp"
+        android:layout_height="46dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/bluebutton"
+        android:fontFamily="sans-serif-medium"
+        android:text="Save"
+        android:textSize="21dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toEndOf="@+id/addSchedCancel_btn"
+        app:layout_constraintTop_toBottomOf="@+id/notesView"
+        app:layout_constraintVertical_bias="0.837" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

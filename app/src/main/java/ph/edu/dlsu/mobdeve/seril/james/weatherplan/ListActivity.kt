@@ -12,10 +12,19 @@ class ListActivity : AppCompatActivity() {
         binding = ActivityListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Directs to HomeActivity
         binding.optionsMenu.listTodayTv.setOnClickListener{
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
+
+        // Directs to AddScheduleActivity
+        binding.optionsMenu.listAddTv.setOnClickListener{
+            val intent = Intent(this, AddScheduleActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 
 }

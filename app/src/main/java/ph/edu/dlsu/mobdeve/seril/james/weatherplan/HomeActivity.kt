@@ -36,11 +36,25 @@ class HomeActivity : AppCompatActivity() {
             false)
         binding.scheduleList.adapter = scheduleAdapter
 
-        // When clicked, will move to list activity page //
+        // When clicked, will move to LIST ACTIVITY page //
         binding.optionsMenu.listTv.setOnClickListener{
             val intent = Intent(this, ListActivity::class.java)
             startActivity(intent)
         }
+
+        // When clicked, will move to ADD ACTIVITY page //
+        binding.optionsMenu.listAddTv.setOnClickListener{
+            val intent = Intent(this, AddScheduleActivity::class.java)
+            startActivity(intent)
+        }
+
+        // When clicked, will move to ACCOUNT DETAILS page //
+        binding.optionsMenu.listAccountTv.setOnClickListener{
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 
 // CLASS TO CALL THE API VARIABLES

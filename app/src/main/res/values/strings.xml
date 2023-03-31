@@ -15,4 +15,14 @@
     <string name="main_password">Password</string>
     <string name="main_login">Login</string>
     <string name="main_create_account">Create Account</string>
+
+    <!--Event Type Filter-->
+    <string-array name="EventType">
+        <item>EVENT</item>
+        <item>MEETING</item>
+        <item>CLASS</item>
+        <item>HOLIDAY</item>
+        <item>MISCELLANEOUS</item>
+    </string-array>
+
 </resources>
