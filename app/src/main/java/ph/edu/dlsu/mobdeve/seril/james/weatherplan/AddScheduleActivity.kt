@@ -1,16 +1,21 @@
 package ph.edu.dlsu.mobdeve.seril.james.weatherplan
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import androidx.appcompat.app.AppCompatActivity
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOSQLiteImplementation
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.ScheduleAdapter
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityAddScheduleBinding
-import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityHomeBinding
+import java.util.*
 
 class AddScheduleActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddScheduleBinding
 
+    @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddScheduleBinding.inflate(layoutInflater)
@@ -29,11 +34,35 @@ class AddScheduleActivity : AppCompatActivity() {
             spinner.adapter = adapter
         }
 
+        binding.addTimePicker.setIs24HourView(true)
+
         // If User Canceled the add sched, it will return to the home activity
         binding.addSchedCancelBtn.setOnClickListener{
             val goToHome = Intent(this, HomeActivity::class.java)
             startActivity(goToHome)
         }
 
+        binding.addSchedSaveBtn.setOnClickListener{
+            if (binding.etAddTitle.text.isNotEmpty()
+                && binding.etAddLocation.text.isNotEmpty()
+            ) {
+                val calendar: Calendar = Calendar.getInstance()
+                calendar.set(binding.datePicker.year, binding.datePicker.month, binding.datePicker.dayOfMonth, binding.addTimePicker.hour, binding.addTimePicker.minute)
+
+                val schedule = Schedule()
+                schedule.title = binding.etAddTitle.text.toString()
+                schedule.location = binding.etAddLocation.text.toString()
+                schedule.event = Schedule().getEnumType(binding.eventTypeSpinner.selectedItem.toString())
+                schedule.datetime = calendar.time
+                schedule.notes = binding.etAddNotes.text.toString()
+
+                val scheduleAdapter = ScheduleAdapter(this, ScheduleDAOSQLiteImplementation(applicationContext).getSchedules())
+                scheduleAdapter.addSchedule(schedule)
+
+                val intent = Intent(applicationContext, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
     }
 }

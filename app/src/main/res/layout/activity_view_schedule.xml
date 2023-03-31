@@ -63,16 +63,30 @@
         app:layout_constraintTop_toBottomOf="@id/divider" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/view_event_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="EVENT"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_title" />
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/view_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+
         android:fontFamily="sans-serif-medium"
         android:text="Location"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_title" />
+        app:layout_constraintTop_toBottomOf="@id/view_event_type" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/view_time"
@@ -119,15 +133,13 @@
         android:layout_height="53dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="20dp"
         android:layout_marginBottom="68dp"
         android:background="@drawable/bluebutton"
         android:fontFamily="sans-serif-black"
         android:text="Edit Schedule"
         android:textSize="16dp"
         app:layout_constraintBottom_toTopOf="@+id/options_menu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@id/shareSchedule_btn"
         app:layout_constraintStart_toEndOf="@+id/cancelSchedule_btn" />
 
     <Button
@@ -143,7 +155,6 @@
         android:textSize="16dp"
         app:layout_constraintBottom_toTopOf="@+id/options_menu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toEndOf="@+id/editSchedule_btn" />
 
     <Button
@@ -152,14 +163,14 @@
         android:layout_height="53dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="16dp"
         android:layout_marginBottom="68dp"
         android:background="@drawable/redbutton"
         android:fontFamily="sans-serif-black"
         android:text="Cancel Schedule"
         android:textSize="16dp"
         app:layout_constraintBottom_toTopOf="@+id/options_menu"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/editSchedule_btn"/>
 
     <include
         android:id="@id/options_menu"

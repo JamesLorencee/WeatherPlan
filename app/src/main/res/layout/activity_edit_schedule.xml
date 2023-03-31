@@ -59,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Title" />
 
     <EditText
-        android:id="@+id/et_addTitle"
+        android:id="@+id/et_editTitle"
         android:layout_width="305dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -97,7 +97,7 @@
         app:layout_constraintTop_toBottomOf="@+id/LocationTextView" />
 
     <EditText
-        android:id="@+id/et_addLocation"
+        android:id="@+id/et_editLocation"
         android:layout_width="304dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -135,7 +135,7 @@
         app:layout_constraintTop_toBottomOf="@+id/TimeTextView" />
 
     <TimePicker
-        android:id="@+id/add_timePicker"
+        android:id="@+id/edit_timePicker"
         android:layout_width="150dp"
         android:layout_height="120dp"
         android:layout_centerHorizontal="true"
@@ -153,11 +153,11 @@
         android:text="Event Type"
         android:textColor="@color/black"
         android:textSize="17sp"
-        app:layout_constraintStart_toStartOf="@+id/eventType_spinner"
+        app:layout_constraintStart_toStartOf="@+id/edit_eventType_spinner"
         app:layout_constraintTop_toBottomOf="@+id/LocationView" />
 
     <Spinner
-        android:id="@+id/eventType_spinner"
+        android:id="@+id/edit_eventType_spinner"
         android:layout_width="115dp"
         android:layout_height="48dp"
         android:layout_marginStart="20dp"
@@ -180,18 +180,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timeView" />
 
-<!--    <View-->
-<!--        android:id="@+id/notesView"-->
-<!--        android:layout_width="380dp"-->
-<!--        android:layout_height="100dp"-->
-<!--        android:background="@drawable/rectangle_textview"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.38"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/textView4" />-->
-
     <EditText
-        android:id="@+id/et_addNotes"
+        android:id="@+id/et_editNotes"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginStart="20dp"
@@ -206,7 +196,7 @@
         android:importantForAutofill="no" />
 
     <Button
-        android:id="@+id/addSchedCancel_btn"
+        android:id="@+id/editSchedCancel_btn"
         android:layout_width="149dp"
         android:layout_height="48dp"
         android:layout_alignParentStart="true"
@@ -218,11 +208,11 @@
         android:textSize="21sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_addNotes"
+        app:layout_constraintTop_toBottomOf="@+id/et_editNotes"
         app:layout_constraintVertical_bias="0.837" />
 
     <Button
-        android:id="@+id/addSchedSave_btn"
+        android:id="@+id/editSchedSave_btn"
         android:layout_width="149dp"
         android:layout_height="48dp"
         android:layout_alignParentStart="true"
@@ -234,8 +224,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toEndOf="@+id/addSchedCancel_btn"
-        app:layout_constraintTop_toBottomOf="@+id/et_addNotes"
+        app:layout_constraintStart_toEndOf="@+id/editSchedCancel_btn"
+        app:layout_constraintTop_toBottomOf="@+id/et_editNotes"
         app:layout_constraintVertical_bias="0.837" />
 
 

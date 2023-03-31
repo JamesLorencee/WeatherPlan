@@ -3,6 +3,7 @@ package ph.edu.dlsu.mobdeve.seril.james.weatherplan
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAO
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOSQLiteImplementation
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.ScheduleAdapter
@@ -20,6 +21,11 @@ class ListActivity : AppCompatActivity() {
         scheduleDAO = ScheduleDAOSQLiteImplementation(applicationContext)
 
         scheduleAdapter = ScheduleAdapter(this, scheduleDAO.getSchedules())
+
+        binding.scheduleList.layoutManager = LinearLayoutManager(applicationContext,
+            LinearLayoutManager.VERTICAL,
+            false)
+        binding.scheduleList.adapter = scheduleAdapter
 
         // Directs to HomeActivity
         binding.optionsMenu.listTodayTv.setOnClickListener{

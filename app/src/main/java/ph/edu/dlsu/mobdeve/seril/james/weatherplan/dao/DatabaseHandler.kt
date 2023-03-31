@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class DatabaseHandler(context: Context): SQLiteOpenHelper(context, DATABASENAME, null, DATABASEVERSION) {
+class DatabaseHandler(var context: Context): SQLiteOpenHelper(context, DATABASENAME, null, DATABASEVERSION) {
     companion object {
         private val DATABASEVERSION = 1
         private val DATABASENAME = "ScheduleDatabase"
@@ -20,6 +20,7 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context, DATABASENAME,
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
+
         val CREATEACCOUNTSTABLE =
             "CREATE TABLE $TABLESCHEDULE " +
                     "($TABLESCHEDULEID INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -43,6 +44,11 @@ class DatabaseHandler(context: Context): SQLiteOpenHelper(context, DATABASENAME,
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        db!!.execSQL("DROP TABLE IF EXISTS $TABLESCHEDULE")
+        onCreate(db)
+    }
+
+    override fun onDowngrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db!!.execSQL("DROP TABLE IF EXISTS $TABLESCHEDULE")
         onCreate(db)
     }
