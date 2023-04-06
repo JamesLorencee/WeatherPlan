@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/login_page"
     tools:context=".MainActivity">
 
@@ -11,96 +11,85 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/cloud"
-        android:layout_width="180dp"
-        android:layout_height="184dp"
+        android:layout_width="226dp"
+        android:layout_height="187dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="1dp"
-        android:src="@drawable/weatherplanlogo" />
+        android:src="@drawable/weatherplanlogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Email Address  -->
-
-    <!-- Password TextView and EditText   -->
-    <View
-        android:id="@+id/tv_rectangle_email"
-        android:layout_width="wrap_content"
-        android:layout_height="38dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginTop="253dp"
-        android:background="@drawable/rectangle_textview" />
-
-    <EditText
-        android:id="@+id/et_emailAddress"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tv_rectangle_email"
-        android:layout_alignTop="@+id/tv_rectangle_email"
-        android:layout_alignBottom="@+id/tv_rectangle_email"
-        android:layout_alignEnd="@+id/tv_rectangle_email"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="6dp"
-        android:autofillHints="emailAddress"
-        android:background="#00000000"
-        android:hint="@string/main_email_address"
-        android:inputType="textEmailAddress"
-        android:maxLines="1"
-        android:textColorHint="#C8C8C8" />
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="40dp"
+        app:boxStrokeColor="@color/black"
+        app:hintTextColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cloud">
 
-    <!-- Password TextView and EditText   -->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_emailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rectangle_textview"
+            android:hint=" Email Address"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Login Button   -->
-    <!-- Login Button   -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="24dp"
+        app:boxStrokeColor="@color/black"
+        app:hintTextColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/emailLayout"
+        app:passwordToggleEnabled="true">
 
-    <!-- Create Account Button   -->
-
-    <View
-        android:id="@+id/tv_rectangle_password"
-        android:layout_width="wrap_content"
-        android:layout_height="39dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginTop="312dp"
-        android:background="@drawable/rectangle_textview" />
-
-    <EditText
-        android:id="@+id/et_password"
-        android:layout_width="305dp"
-        android:layout_height="28dp"
-        android:layout_alignStart="@+id/tv_rectangle_password"
-        android:layout_alignEnd="@+id/tv_rectangle_password"
-        android:layout_alignTop="@+id/tv_rectangle_password"
-        android:layout_alignBottom="@+id/tv_rectangle_password"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="6dp"
-        android:autofillHints="password"
-        android:background="#00000000"
-        android:hint="@string/main_password"
-        android:inputType="textPassword"
-        android:textColorHint="#C8C8C8" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle_textview"
+            android:hint=" Password"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/login_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_below="@+id/tv_rectangle_password"
+        android:layout_width="137dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/passwordLayout"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="46dp"
-        android:layout_marginEnd="92dp"
+        android:layout_marginTop="56dp"
         android:background="@drawable/bluebutton"
         android:fontFamily="sans-serif-black"
-        android:text="@string/main_login" />
+        android:text="@string/main_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="40dp"
+        android:background="#000"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/register_btn" />
 
     <Button
         android:id="@+id/register_btn"
@@ -109,32 +98,68 @@
         android:layout_below="@+id/login_btn"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="90dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="90dp"
+        android:layout_marginTop="12dp"
         android:fontFamily="sans-serif-black"
-        android:text="@string/main_create_account" />
-    <!-- Create Account Button   -->
+        android:text="@string/main_create_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_btn" />
 
+<!--    <TextView-->
+<!--        android:id="@+id/googleSignIn_Tv"-->
+<!--        android:layout_width="230dp"-->
+<!--        android:layout_height="37dp"-->
+<!--        android:layout_marginTop="44dp"-->
+<!--        android:background="@drawable/rectangle_textview"-->
+<!--        android:fontFamily="sans-serif-medium"-->
+<!--        android:gravity="center"-->
+<!--        android:text="Sign in with Google"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="16dp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.513"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/divider" />-->
 
+<!--    <ImageView-->
+<!--        android:id="@+id/googleimgIV"-->
+<!--        android:layout_width="42dp"-->
+<!--        android:layout_height="36dp"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:src="@drawable/googlelogo"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/googleSignIn_Tv"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/googleSignIn_Tv"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/googleSignIn_Tv"-->
+<!--        app:layout_constraintVertical_bias="1.0" />-->
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.gms.common.SignInButton
         android:id="@+id/googleSignIn_btn"
-        android:layout_width="276dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/register_btn"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="67dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="68dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Google Sign In"
-        app:icon="@drawable/googlelogo"
-        app:iconGravity="end"
-        app:iconPadding="4dp"
-        app:iconSize="15dp"
-        app:iconTint="@color/black"
-        android:background="@color/white"/>
+        android:layout_width="159dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider">
 
-</RelativeLayout>
+    </com.google.android.gms.common.SignInButton>
+
+    <!--    <androidx.appcompat.widget.AppCompatButton-->
+    <!--        android:id="@+id/googleSignIn_btn"-->
+    <!--        android:layout_width="272dp"-->
+    <!--        android:layout_height="46dp"-->
+    <!--        android:layout_below="@+id/register_btn"-->
+    <!--        android:layout_alignParentStart="true"-->
+    <!--        android:layout_alignParentEnd="true"-->
+    <!--        android:layout_marginTop="112dp"-->
+    <!--        android:background="@color/white"-->
+    <!--        android:fontFamily="sans-serif-black"-->
+    <!--        android:text="Google Sign In"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.494"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/register_btn" />-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
