@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import org.json.JSONObject
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAO
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOSQLiteImplementation
@@ -20,6 +21,8 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var scheduleAdapter: ScheduleAdapter
     private lateinit var scheduleDAO: ScheduleDAO
+
+    private lateinit var auth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

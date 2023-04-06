@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "6066733706",
+    "project_id": "s12-weatherplan",
+    "storage_bucket": "s12-weatherplan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6066733706:android:48574010626c893abca373",
+        "android_client_info": {
+          "package_name": "ph.edu.dlsu.mobdeve.seril.james.weatherplan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "6066733706-0sebdo3hcos92grken159bss1u1gt27t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ph.edu.dlsu.mobdeve.seril.james.weatherplan",
+            "certificate_hash": "13f773474fa98effe74bed6b8f87f94659f50033"
+          }
+        },
+        {
+          "client_id": "6066733706-gd3bimecsk0nhal0jov0cgtil9qun1sb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBocpL-YcDlReSO8QCCdRcQrF_mtinYOlU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "6066733706-gd3bimecsk0nhal0jov0cgtil9qun1sb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

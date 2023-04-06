@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/login_page"
     tools:context=".MainActivity">
 
@@ -10,7 +11,7 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/cloud"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="184dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -89,21 +90,21 @@
 
     <Button
         android:id="@+id/login_btn"
-        android:layout_width="260dp"
-        android:layout_height="36dp"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
         android:layout_below="@+id/tv_rectangle_password"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="88dp"
         android:layout_marginTop="46dp"
-        android:layout_marginEnd="70dp"
+        android:layout_marginEnd="92dp"
         android:background="@drawable/bluebutton"
         android:fontFamily="sans-serif-black"
         android:text="@string/main_login" />
 
     <Button
         android:id="@+id/register_btn"
-        android:layout_width="255dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/login_btn"
         android:layout_alignParentStart="true"
@@ -114,5 +115,26 @@
         android:fontFamily="sans-serif-black"
         android:text="@string/main_create_account" />
     <!-- Create Account Button   -->
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/googleSignIn_btn"
+        android:layout_width="276dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/register_btn"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="68dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Google Sign In"
+        app:icon="@drawable/googlelogo"
+        app:iconGravity="end"
+        app:iconPadding="4dp"
+        app:iconSize="15dp"
+        app:iconTint="@color/black"
+        android:background="@color/white"/>
 
 </RelativeLayout>

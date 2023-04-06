@@ -3,21 +3,31 @@ package ph.edu.dlsu.mobdeve.seril.james.weatherplan
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.firebase.auth.FirebaseAuth
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityAddScheduleBinding
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityProfileBinding
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
+
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // DISPLAYING USER INFO through Google Sign in
+        val email = intent.getStringExtra("email").toString()
+        val displayname = intent.getStringExtra("name").toString()
+
+        binding.userEmailTv.text = email
+        binding.usernameTv.text = displayname
 
         // LOGOUT FUNCTION here (need to terminate user data. No Proper function yet
+        auth = FirebaseAuth.getInstance()
         binding.logoutProfileBtn.setOnClickListener{
-            val logout = Intent(this, MainActivity::class.java)
-            startActivity(logout)
+            auth.signOut()
+            startActivity(Intent(this,MainActivity::class.java))
 
         }
 
