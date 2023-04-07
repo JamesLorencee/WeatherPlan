@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "6066733706-ou1ouk6nlfgu63e77np90hcqofvnbc6c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ph.edu.dlsu.mobdeve.seril.james.weatherplan",
+            "certificate_hash": "9d88b2b16957a9deeea8b4a751b339ebc58bf531"
+          }
+        },
+        {
           "client_id": "6066733706-gd3bimecsk0nhal0jov0cgtil9qun1sb.apps.googleusercontent.com",
           "client_type": 3
         }

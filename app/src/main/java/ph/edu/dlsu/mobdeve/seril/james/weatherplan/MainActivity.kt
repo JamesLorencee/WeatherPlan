@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
-                val intent : Intent = Intent(this, ProfileActivity::class.java)
+                val intent = Intent(this, ProfileActivity::class.java)
                 intent.putExtra("email", account.email.toString())
                 intent.putExtra("name", account.displayName.toString())
                 println(account.displayName)
@@ -105,6 +105,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             } else {
                 Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                println(it.exception.toString())
             }
         }
     }
