@@ -1,14 +1,16 @@
 package ph.edu.dlsu.mobdeve.seril.james.weatherplan
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityAddScheduleBinding
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityProfileBinding
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.utility.SharedPreferencesUtility
 
 class ProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileBinding
+
+    private lateinit var sharedPreferences: SharedPreferencesUtility
 
     private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,17 +18,17 @@ class ProfileActivity : AppCompatActivity() {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // DISPLAYING USER INFO through Google Sign in
-        val email = intent.getStringExtra("email").toString()
-        val displayname = intent.getStringExtra("name").toString()
+        sharedPreferences = SharedPreferencesUtility(applicationContext)
 
-        binding.userEmailTv.text = email
-        binding.usernameTv.text = displayname
+        binding.userEmailTv.text = sharedPreferences.getStringPrefs("account_email")
+//        binding.usernameTv.text = intent.getStringExtra("name").toString()
 
         // LOGOUT FUNCTION here (need to terminate user data. No Proper function yet
         auth = FirebaseAuth.getInstance()
         binding.logoutProfileBtn.setOnClickListener{
             auth.signOut()
+            sharedPreferences.setStringPrefs("account_email", "")
+            sharedPreferences.setStringPrefs("account_password", "")
             startActivity(Intent(this,MainActivity::class.java))
 
         }

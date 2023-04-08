@@ -5,7 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
-import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOSQLiteImplementation
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFFirebaseImplementation
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.ScheduleAdapter
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityViewScheduleBinding
 
@@ -61,7 +61,7 @@ class ViewScheduleActivity : AppCompatActivity() {
         }
 
         binding.cancelScheduleBtn.setOnClickListener{
-            val scheduleAdapter = ScheduleAdapter(this, ScheduleDAOSQLiteImplementation(applicationContext).getSchedules())
+            val scheduleAdapter = ScheduleAdapter(this, ScheduleDAOFFirebaseImplementation().getSchedules())
             scheduleAdapter.deleteSchedule(intent.getIntExtra("position", -99))
 
             val intent = Intent(this, HomeActivity::class.java)

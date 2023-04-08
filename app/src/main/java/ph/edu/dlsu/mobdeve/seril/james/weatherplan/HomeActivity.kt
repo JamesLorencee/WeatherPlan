@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import org.json.JSONObject
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAO
-import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOSQLiteImplementation
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFFirebaseImplementation
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.ScheduleAdapter
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityHomeBinding
 import java.net.URL
@@ -30,7 +30,7 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        scheduleDAO = ScheduleDAOSQLiteImplementation(applicationContext)
+        scheduleDAO = ScheduleDAOFFirebaseImplementation()
 
         // To Run the weather API
         WeatherTask().execute()

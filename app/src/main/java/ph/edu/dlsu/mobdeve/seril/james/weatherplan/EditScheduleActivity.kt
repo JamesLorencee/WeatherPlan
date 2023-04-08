@@ -2,11 +2,11 @@ package ph.edu.dlsu.mobdeve.seril.james.weatherplan
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOSQLiteImplementation
+import androidx.appcompat.app.AppCompatActivity
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFFirebaseImplementation
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.ScheduleAdapter
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityEditScheduleBinding
@@ -75,15 +75,15 @@ class EditScheduleActivity : AppCompatActivity() {
                     binding.etEditNotes.text.toString()
                 )
 
-                val scheduleAdapter = ScheduleAdapter(this, ScheduleDAOSQLiteImplementation(applicationContext).getSchedules())
+                val scheduleAdapter = ScheduleAdapter(this, ScheduleDAOFFirebaseImplementation().getSchedules())
                 scheduleAdapter.editSchedule(schedule, this.intent.getIntExtra("position", -999))
 
                 intent.putExtra("id", this.intent.getIntExtra("id", -999))
                 intent.putExtra("title", schedule.title)
                 intent.putExtra("location", schedule.location)
                 intent.putExtra("eventtype", schedule.event.toString())
-                intent.putExtra("time", schedule.getTimeString())
-                intent.putExtra("date", schedule.getDateString())
+                intent.putExtra("time", schedule.time)
+                intent.putExtra("date", schedule.date)
                 intent.putExtra("notes", schedule.notes)
                 intent.putExtra("position", this.intent.getIntExtra("position", -999))
                 setResult(1, intent)

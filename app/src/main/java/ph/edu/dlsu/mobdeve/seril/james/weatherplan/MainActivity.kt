@@ -3,10 +3,10 @@ package ph.edu.dlsu.mobdeve.seril.james.weatherplan
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -15,10 +15,13 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityMainBinding
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.utility.SharedPreferencesUtility
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private lateinit var sharedPreferences: SharedPreferencesUtility
 
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
@@ -28,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        sharedPreferences = SharedPreferencesUtility(applicationContext)
+
         binding.loginBtn.setOnClickListener {
             val email = binding.etEmailAddress.text.toString()
             val password = binding.etPassword.text.toString()
@@ -35,6 +40,9 @@ class MainActivity : AppCompatActivity() {
             if(email.isNotEmpty() && password.isNotEmpty()){
                     auth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
                         if(it.isSuccessful){
+                            sharedPreferences.setStringPrefs("account_email", binding.etEmailAddress.text.toString())
+                            sharedPreferences.setStringPrefs("account_password", binding.etPassword.text.toString())
+
                             val intent = Intent(this, HomeActivity::class.java)
                             startActivity(intent)
                         }else{
@@ -97,11 +105,9 @@ class MainActivity : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener {
             if (it.isSuccessful) {
-                val intent = Intent(this, ProfileActivity::class.java)
-                intent.putExtra("email", account.email.toString())
-                intent.putExtra("name", account.displayName.toString())
-                println(account.displayName)
-                println(account.email)
+                sharedPreferences.setStringPrefs("account_email", account.email.toString())
+
+                val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
             } else {
                 Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()

@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAO
-import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOSQLiteImplementation
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFFirebaseImplementation
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.ScheduleAdapter
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityListBinding
 
@@ -18,7 +18,7 @@ class ListActivity : AppCompatActivity() {
         binding = ActivityListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        scheduleDAO = ScheduleDAOSQLiteImplementation(applicationContext)
+        scheduleDAO = ScheduleDAOFFirebaseImplementation()
 
         scheduleAdapter = ScheduleAdapter(this, scheduleDAO.getSchedules())
 

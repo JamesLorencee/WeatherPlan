@@ -6,10 +6,11 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
-import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOSQLiteImplementation
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFFirebaseImplementation
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.ScheduleAdapter
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityAddScheduleBinding
+import java.text.SimpleDateFormat
 import java.util.*
 
 class AddScheduleActivity : AppCompatActivity() {
@@ -53,10 +54,11 @@ class AddScheduleActivity : AppCompatActivity() {
                 schedule.title = binding.etAddTitle.text.toString()
                 schedule.location = binding.etAddLocation.text.toString()
                 schedule.event = Schedule().getEnumType(binding.eventTypeSpinner.selectedItem.toString())
-                schedule.datetime = calendar.time
+                schedule.date = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
+                schedule.time = SimpleDateFormat("hh:mm a").format(calendar.time)
                 schedule.notes = binding.etAddNotes.text.toString()
 
-                val scheduleAdapter = ScheduleAdapter(this, ScheduleDAOSQLiteImplementation(applicationContext).getSchedules())
+                val scheduleAdapter = ScheduleAdapter(this, ScheduleDAOFFirebaseImplementation().getSchedules())
                 scheduleAdapter.addSchedule(schedule)
 
                 val intent = Intent(applicationContext, HomeActivity::class.java)

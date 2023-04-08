@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "6066733706",
+    "firebase_url": "https://s12-weatherplan-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "s12-weatherplan",
     "storage_bucket": "s12-weatherplan.appspot.com"
   },
