@@ -45,7 +45,7 @@ class EditScheduleActivity : AppCompatActivity(), ScheduleListener {
             spinner.setSelection(selection)
         }
 
-        val datetime = SimpleDateFormat("MMMM dd, yyyy hh:mm a")
+        val datetime = SimpleDateFormat("yyyy-MM-dd HH:mm")
             .parse("${intent.getStringExtra("date").toString()} ${intent.getStringExtra("time").toString()}")
 
         binding.editTimePicker.setIs24HourView(true)

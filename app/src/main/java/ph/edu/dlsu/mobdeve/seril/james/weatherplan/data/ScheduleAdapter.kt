@@ -10,6 +10,7 @@ import ph.edu.dlsu.mobdeve.seril.james.weatherplan.ViewScheduleActivity
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFFirebaseImplementation
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ItemListBinding
+import java.text.SimpleDateFormat
 
 class ScheduleAdapter (private val context: Context,
                        private var scheduleList: ArrayList<Schedule>)
@@ -48,10 +49,12 @@ class ScheduleAdapter (private val context: Context,
 
                 @SuppressLint("SimpleDateFormat")
                 fun bindItems (schedule: Schedule){
+                    val datetime = SimpleDateFormat("yyyy-MM-dd HH:mm").parse("${schedule.date} ${schedule.time}")
+
                     itemBinding.titleTv.text = schedule.title
                     itemBinding.locationTv.text = schedule.location
-                    itemBinding.dateTv.text = schedule.date
-                    itemBinding.timeTv.text = schedule.time
+                    itemBinding.dateTv.text = SimpleDateFormat("MMMM dd, yyyy").format(datetime!!)
+                    itemBinding.timeTv.text = SimpleDateFormat("hh:mm a").format(datetime)
                 }
             }
 

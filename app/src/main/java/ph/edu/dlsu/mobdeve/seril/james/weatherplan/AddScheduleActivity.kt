@@ -57,11 +57,12 @@ class AddScheduleActivity : AppCompatActivity(), ScheduleListener {
                 calendar.set(binding.datePicker.year, binding.datePicker.month, binding.datePicker.dayOfMonth, binding.addTimePicker.hour, binding.addTimePicker.minute)
 
                 val schedule = Schedule()
+                schedule.id = scheduleAdapter.itemCount
                 schedule.title = binding.etAddTitle.text.toString()
                 schedule.location = binding.etAddLocation.text.toString()
                 schedule.event = Schedule().getEnumType(binding.eventTypeSpinner.selectedItem.toString())
                 schedule.date = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
-                schedule.time = SimpleDateFormat("hh:mm a").format(calendar.time)
+                schedule.time = SimpleDateFormat("HH:mm").format(calendar.time)
                 schedule.notes = binding.etAddNotes.text.toString()
 
                 scheduleAdapter.addSchedule(schedule)

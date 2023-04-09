@@ -111,14 +111,14 @@ interface ScheduleDAO {
 class ScheduleDAOFFirebaseImplementation : ScheduleDAO{
 
     private lateinit var firebase: FirebaseDatabase
-    private lateinit var auth: FirebaseAuth
+    private var auth = FirebaseAuth.getInstance()
 
     override fun addSchedule(schedule: Schedule) {
         firebase = Firebase.database
-        val scheduleRoot = firebase.reference.child("root").child("schedule")
+        val scheduleRoot = Firebase.database.reference.child("root").child("users").child(auth.currentUser!!.uid).child("scheduleList")
         println(schedule.title)
 
-        scheduleRoot.push().setValue(schedule)
+        scheduleRoot.child(schedule.id.toString()).setValue(schedule)
     }
 
     override fun removeSchedule(scheduleId: Int) {
@@ -139,16 +139,15 @@ class ScheduleDAOFFirebaseImplementation : ScheduleDAO{
     }
 
     private fun readData (scheduleCallback: ScheduleCallback) {
-        auth = FirebaseAuth.getInstance()
-        var scheduleList = ArrayList<Schedule>()
-        var scheduleRoot = Firebase.database.reference.child("root").child("users").child(auth.currentUser!!.uid).child("scheduleList")
+        val scheduleList = ArrayList<Schedule>()
+        val scheduleRoot = Firebase.database.reference.child("root").child("users").child(auth.currentUser!!.uid).child("scheduleList")
 
         scheduleRoot.get().addOnSuccessListener {
             val schedules = it.children
 
             for (schedule in schedules) {
-                var data = schedule.getValue(Schedule::class.java)!!
-                var newSchedule = Schedule()
+                val data = schedule.getValue(Schedule::class.java)!!
+                val newSchedule = Schedule()
                 newSchedule.id = data.id
                 newSchedule.title = data.title
                 newSchedule.location = data.location
