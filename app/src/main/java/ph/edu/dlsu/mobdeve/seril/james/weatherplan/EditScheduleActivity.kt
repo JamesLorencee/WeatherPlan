@@ -54,7 +54,7 @@ class EditScheduleActivity : AppCompatActivity(), ScheduleListener {
 
         binding.datePicker.updateDate(
             SimpleDateFormat("yyyy").format(datetime).toInt(),
-            SimpleDateFormat("MM").format(datetime).toInt(),
+            SimpleDateFormat("MM").format(datetime).toInt() - 1,
             SimpleDateFormat("dd").format(datetime).toInt()
             )
 
@@ -71,15 +71,14 @@ class EditScheduleActivity : AppCompatActivity(), ScheduleListener {
                 val calendar: Calendar = Calendar.getInstance()
                 calendar.set(binding.datePicker.year, binding.datePicker.month, binding.datePicker.dayOfMonth, binding.editTimePicker.hour, binding.editTimePicker.minute)
 
-                val schedule = Schedule(
-                    this.intent.getIntExtra("id", -999),
-                    binding.etEditTitle.text.toString(),
-                    binding.etEditLocation.text.toString(),
-                    Schedule().getEnumType(binding.editEventTypeSpinner.selectedItem.toString()),
-                    SimpleDateFormat("yyyy-MM-dd").format(calendar.time),
-                    SimpleDateFormat("HH:mm").format(calendar.time),
-                    binding.etEditNotes.text.toString()
-                )
+                val schedule = Schedule()
+                schedule.id = this.intent.getIntExtra("id", -999)
+                schedule.title = binding.etEditTitle.text.toString()
+                schedule.location = binding.etEditLocation.text.toString()
+                schedule.event = Schedule().getEnumType(binding.editEventTypeSpinner.selectedItem.toString())
+                schedule.date = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
+                schedule.time = SimpleDateFormat("HH:mm").format(calendar.time)
+                schedule.notes = binding.etEditNotes.text.toString()
 
                 scheduleAdapter.editSchedule(schedule, this.intent.getIntExtra("position", -999))
 

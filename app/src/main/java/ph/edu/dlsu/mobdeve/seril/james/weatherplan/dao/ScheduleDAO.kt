@@ -116,13 +116,15 @@ class ScheduleDAOFFirebaseImplementation : ScheduleDAO{
     override fun addSchedule(schedule: Schedule) {
         firebase = Firebase.database
         val scheduleRoot = Firebase.database.reference.child("root").child("users").child(auth.currentUser!!.uid).child("scheduleList")
-        println(schedule.title)
 
         scheduleRoot.child(schedule.id.toString()).setValue(schedule)
     }
 
     override fun removeSchedule(scheduleId: Int) {
-        TODO("Not yet implemented")
+        firebase = Firebase.database
+        val scheduleRoot = Firebase.database.reference.child("root").child("users").child(auth.currentUser!!.uid).child("scheduleList")
+
+        scheduleRoot.child(scheduleId.toString()).removeValue()
     }
 
     override fun getSchedules(listener: ScheduleListener) {
@@ -135,7 +137,15 @@ class ScheduleDAOFFirebaseImplementation : ScheduleDAO{
     }
 
     override fun updateSchedule(schedule: Schedule) {
-        TODO("Not yet implemented")
+        firebase = Firebase.database
+        val scheduleRoot = Firebase.database.reference.child("root").child("users").child(auth.currentUser!!.uid).child("scheduleList").child(schedule.id.toString())
+
+        scheduleRoot.child("title").setValue(schedule.title)
+        scheduleRoot.child("location").setValue(schedule.location)
+        scheduleRoot.child("event").setValue(schedule.event)
+        scheduleRoot.child("date").setValue(schedule.date)
+        scheduleRoot.child("time").setValue(schedule.time)
+        scheduleRoot.child("notes").setValue(schedule.notes)
     }
 
     private fun readData (scheduleCallback: ScheduleCallback) {

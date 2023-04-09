@@ -14,6 +14,7 @@ import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleListener
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.ScheduleAdapter
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityHomeBinding
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.utility.SharedPreferencesUtility
 import java.net.URL
 
 @Suppress("DEPRECATION")
@@ -22,7 +23,7 @@ class HomeActivity : AppCompatActivity(), ScheduleListener {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var scheduleAdapter: ScheduleAdapter
     private lateinit var scheduleDAO: ScheduleDAO
-
+    private lateinit var sharedPreferences: SharedPreferencesUtility
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +32,8 @@ class HomeActivity : AppCompatActivity(), ScheduleListener {
 
         scheduleDAO = ScheduleDAOFFirebaseImplementation()
         scheduleDAO.getSchedules(this)
+
+        sharedPreferences = SharedPreferencesUtility(applicationContext)
 
         // To Run the weather API
         WeatherTask().execute()
@@ -96,6 +99,9 @@ class HomeActivity : AppCompatActivity(), ScheduleListener {
 
                 binding.weatherTemperature.text = temp
                 binding.weatherDescription.text = weatherDescription
+
+                sharedPreferences.setStringPrefs("weatherTemperature", temp)
+                sharedPreferences.setStringPrefs("weatherDescription", weatherDescription)
 
                 Log.d ("Weather", "OnPostExecute")
             }
