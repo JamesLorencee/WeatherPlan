@@ -1,5 +1,6 @@
 package ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao
 
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -14,6 +15,7 @@ interface UserDAO {
 
 class UserDAOFirebaseImplementation : UserDAO {
     private lateinit var firebase: FirebaseDatabase
+    private var auth = FirebaseAuth.getInstance()
 
     override fun addUser(user: User) {
         firebase = Firebase.database
@@ -36,6 +38,10 @@ class UserDAOFirebaseImplementation : UserDAO {
     }
 
     override fun updateUser(user: User) {
-        TODO("Not yet implemented")
+        firebase = Firebase.database
+        val userRoot = firebase.reference.child("root").child("users").child(auth.currentUser!!.uid)
+
+        userRoot.child("username").setValue(user.username)
+        userRoot.child("email").setValue(user.email)
     }
 }
