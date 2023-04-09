@@ -2,16 +2,18 @@ package ph.edu.dlsu.mobdeve.seril.james.weatherplan
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
-import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFFirebaseImplementation
+import androidx.appcompat.app.AppCompatActivity
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleListener
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.ScheduleAdapter
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityViewScheduleBinding
 
-class ViewScheduleActivity : AppCompatActivity() {
+class ViewScheduleActivity : AppCompatActivity(), ScheduleListener {
 
     private lateinit var binding: ActivityViewScheduleBinding
+    private lateinit var scheduleAdapter: ScheduleAdapter
 
     @SuppressLint("SetTextI18n")
     private val launchEdit = registerForActivityResult(
@@ -61,7 +63,6 @@ class ViewScheduleActivity : AppCompatActivity() {
         }
 
         binding.cancelScheduleBtn.setOnClickListener{
-            val scheduleAdapter = ScheduleAdapter(this, ScheduleDAOFFirebaseImplementation().getSchedules())
             scheduleAdapter.deleteSchedule(intent.getIntExtra("position", -99))
 
             val intent = Intent(this, HomeActivity::class.java)
@@ -83,5 +84,9 @@ class ViewScheduleActivity : AppCompatActivity() {
 
             launchEdit.launch(goToEditScheduleActivity)
         }
+    }
+
+    override fun onSchedulesReceived(scheduleList: ArrayList<Schedule>) {
+        scheduleAdapter = ScheduleAdapter(this, scheduleList)
     }
 }

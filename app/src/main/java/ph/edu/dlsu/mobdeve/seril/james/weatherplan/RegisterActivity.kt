@@ -57,7 +57,7 @@ class RegisterActivity : AppCompatActivity() {
                             dummySchedule.notes = "My First Notes"
                             scheduleList.add(dummySchedule)
 
-                            newUser.uid = it.result.user!!.uid
+                            newUser.id = it.result.user!!.uid
                             newUser.username = username
                             newUser.email = it.result.user!!.email
                             newUser.scheduleList = scheduleList

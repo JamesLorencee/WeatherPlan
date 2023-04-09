@@ -7,22 +7,21 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.auth.FirebaseAuth
 import org.json.JSONObject
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAO
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFFirebaseImplementation
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleListener
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.ScheduleAdapter
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityHomeBinding
 import java.net.URL
 
 @Suppress("DEPRECATION")
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), ScheduleListener {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var scheduleAdapter: ScheduleAdapter
     private lateinit var scheduleDAO: ScheduleDAO
-
-    private lateinit var auth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,16 +30,10 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         scheduleDAO = ScheduleDAOFFirebaseImplementation()
+        scheduleDAO.getSchedules(this)
 
         // To Run the weather API
         WeatherTask().execute()
-
-        scheduleAdapter = ScheduleAdapter(this, scheduleDAO.getSchedules())
-
-        binding.scheduleList.layoutManager = LinearLayoutManager(applicationContext,
-            LinearLayoutManager.VERTICAL,
-            false)
-        binding.scheduleList.adapter = scheduleAdapter
 
         // When clicked, will move to LIST ACTIVITY page //
         binding.optionsMenu.listTv.setOnClickListener{
@@ -59,8 +52,14 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
+    }
 
-
+    override fun onSchedulesReceived(scheduleList: ArrayList<Schedule>) {
+        scheduleAdapter = ScheduleAdapter(this, scheduleList)
+        binding.scheduleList.layoutManager = LinearLayoutManager(applicationContext,
+            LinearLayoutManager.VERTICAL,
+            false)
+        binding.scheduleList.adapter = scheduleAdapter
     }
 
 // CLASS TO CALL THE API VARIABLES

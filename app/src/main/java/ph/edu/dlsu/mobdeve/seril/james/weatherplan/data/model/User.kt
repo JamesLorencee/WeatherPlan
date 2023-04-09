@@ -1,7 +1,7 @@
 package ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model
 
 class User () {
-    var uid: String? = null
+    var id: String? = null
     var email: String? = null
     var username: String? = null
     var scheduleList: ArrayList<Schedule> = ArrayList<Schedule>()

@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityProfileBinding
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.utility.SharedPreferencesUtility
 

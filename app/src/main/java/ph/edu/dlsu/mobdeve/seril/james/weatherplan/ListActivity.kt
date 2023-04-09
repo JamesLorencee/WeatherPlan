@@ -4,28 +4,22 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAO
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFFirebaseImplementation
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleListener
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.ScheduleAdapter
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityListBinding
 
-class ListActivity : AppCompatActivity() {
+class ListActivity : AppCompatActivity(), ScheduleListener {
     private lateinit var binding: ActivityListBinding
     private lateinit var scheduleAdapter: ScheduleAdapter
-    private lateinit var scheduleDAO: ScheduleDAO
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        scheduleDAO = ScheduleDAOFFirebaseImplementation()
-
-        scheduleAdapter = ScheduleAdapter(this, scheduleDAO.getSchedules())
-
-        binding.scheduleList.layoutManager = LinearLayoutManager(applicationContext,
-            LinearLayoutManager.VERTICAL,
-            false)
-        binding.scheduleList.adapter = scheduleAdapter
+        val scheduleDAO = ScheduleDAOFFirebaseImplementation()
+        scheduleDAO.getSchedules(this)
 
         // Directs to HomeActivity
         binding.optionsMenu.listTodayTv.setOnClickListener{
@@ -48,4 +42,11 @@ class ListActivity : AppCompatActivity() {
 
     }
 
+    override fun onSchedulesReceived(scheduleList: ArrayList<Schedule>) {
+        scheduleAdapter = ScheduleAdapter(this, scheduleList)
+        binding.scheduleList.layoutManager = LinearLayoutManager(applicationContext,
+            LinearLayoutManager.VERTICAL,
+            false)
+        binding.scheduleList.adapter = scheduleAdapter
+    }
 }

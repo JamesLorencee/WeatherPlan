@@ -1,15 +1,20 @@
 package ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao
 
 import android.util.Log
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
 
+interface ScheduleListener {
+    fun onSchedulesReceived(scheduleList: ArrayList<Schedule>)
+}
+
 interface ScheduleDAO {
     fun addSchedule(schedule: Schedule)
     fun removeSchedule(scheduleId: Int)
-    fun getSchedules(): ArrayList<Schedule>
+    fun getSchedules(listener: ScheduleListener)
     fun updateSchedule(schedule: Schedule)
 }
 
@@ -106,6 +111,7 @@ interface ScheduleDAO {
 class ScheduleDAOFFirebaseImplementation : ScheduleDAO{
 
     private lateinit var firebase: FirebaseDatabase
+    private lateinit var auth: FirebaseAuth
 
     override fun addSchedule(schedule: Schedule) {
         firebase = Firebase.database
@@ -119,15 +125,13 @@ class ScheduleDAOFFirebaseImplementation : ScheduleDAO{
         TODO("Not yet implemented")
     }
 
-    override fun getSchedules(): ArrayList<Schedule> {
-        var result = ArrayList<Schedule>()
+    override fun getSchedules(listener: ScheduleListener) {
         firebase = Firebase.database
 
-        readData(object : ScheduleCallback { override fun onCallback(scheduleList: ArrayList<Schedule>) {
-            result = scheduleList
-            println("Inside: " + result.size)
+        readData(object : ScheduleCallback {
+            override fun onCallback(scheduleList: ArrayList<Schedule>) {
+                listener.onSchedulesReceived(scheduleList)
         }})
-        return result
     }
 
     override fun updateSchedule(schedule: Schedule) {
@@ -135,9 +139,11 @@ class ScheduleDAOFFirebaseImplementation : ScheduleDAO{
     }
 
     private fun readData (scheduleCallback: ScheduleCallback) {
+        auth = FirebaseAuth.getInstance()
         var scheduleList = ArrayList<Schedule>()
+        var scheduleRoot = Firebase.database.reference.child("root").child("users").child(auth.currentUser!!.uid).child("scheduleList")
 
-        Firebase.database.reference.child("root").child("schedule").get().addOnSuccessListener {
+        scheduleRoot.get().addOnSuccessListener {
             val schedules = it.children
 
             for (schedule in schedules) {
@@ -153,7 +159,7 @@ class ScheduleDAOFFirebaseImplementation : ScheduleDAO{
                 scheduleList.add(newSchedule)
             }
             scheduleCallback.onCallback(scheduleList)
-        }.addOnCanceledListener {
+        }.addOnFailureListener {
             Log.e("ERROR", "UNABLE TO RETRIEVE DATA")
         }
     }

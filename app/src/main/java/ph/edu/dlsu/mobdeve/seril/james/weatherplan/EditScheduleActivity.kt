@@ -7,21 +7,27 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFFirebaseImplementation
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleListener
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.ScheduleAdapter
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityEditScheduleBinding
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
-class EditScheduleActivity : AppCompatActivity() {
+class EditScheduleActivity : AppCompatActivity(), ScheduleListener {
 
     private lateinit var binding: ActivityEditScheduleBinding
+    private lateinit var scheduleAdapter: ScheduleAdapter
 
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditScheduleBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val scheduleDAO = ScheduleDAOFFirebaseImplementation()
+        scheduleDAO.getSchedules(this)
 
         // access the items of the list
         val event = resources.getStringArray(R.array.EventType)
@@ -75,7 +81,6 @@ class EditScheduleActivity : AppCompatActivity() {
                     binding.etEditNotes.text.toString()
                 )
 
-                val scheduleAdapter = ScheduleAdapter(this, ScheduleDAOFFirebaseImplementation().getSchedules())
                 scheduleAdapter.editSchedule(schedule, this.intent.getIntExtra("position", -999))
 
                 intent.putExtra("id", this.intent.getIntExtra("id", -999))
@@ -104,5 +109,9 @@ class EditScheduleActivity : AppCompatActivity() {
             setResult(0, intent)
             finish()
         }
+    }
+
+    override fun onSchedulesReceived(scheduleList: ArrayList<Schedule>) {
+        scheduleAdapter = ScheduleAdapter(this, scheduleList)
     }
 }

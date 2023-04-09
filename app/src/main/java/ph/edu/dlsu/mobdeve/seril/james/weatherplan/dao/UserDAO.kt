@@ -3,12 +3,12 @@ package ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
+import kotlinx.coroutines.tasks.await
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.User
 
 interface UserDAO {
     fun addUser(user: User)
-    fun getUsers(): ArrayList<User>
+    suspend fun getUser(uid: String): User
     fun updateUser(user: User)
 }
 
@@ -20,11 +20,19 @@ class UserDAOFirebaseImplementation : UserDAO {
         val userRoot = firebase.reference.child("root").child("users")
         println(user.username)
 
-        userRoot.push().setValue(user)
+        userRoot.child(user.id!!).setValue(user)
     }
 
-    override fun getUsers(): ArrayList<User> {
-        TODO("Not yet implemented")
+    override suspend fun getUser(uid: String): User {
+        firebase = Firebase.database
+        val userRoot = firebase.reference.child(uid)
+        var result = User()
+        userRoot.get().addOnCompleteListener{
+            result = it.result.getValue(User::class.java)!!
+        }.await()
+
+        println(result.username)
+        return result
     }
 
     override fun updateUser(user: User) {
