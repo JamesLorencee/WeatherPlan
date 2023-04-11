@@ -1,5 +1,6 @@
 package ph.edu.dlsu.mobdeve.seril.james.weatherplan
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,9 @@ import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleListener
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.ScheduleAdapter
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityListBinding
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ListActivity : AppCompatActivity(), ScheduleListener {
     private lateinit var binding: ActivityListBinding
@@ -42,8 +46,14 @@ class ListActivity : AppCompatActivity(), ScheduleListener {
 
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onSchedulesReceived(scheduleList: ArrayList<Schedule>) {
-        scheduleAdapter = ScheduleAdapter(this, scheduleList)
+        val nowString = SimpleDateFormat("yyyy-MM-dd HH:mm").format(Calendar.getInstance().time)
+        val list: ArrayList<Schedule> = ArrayList(scheduleList
+            .filter { it.date + " " + it.time > nowString }
+            .sortedWith(compareBy<Schedule> {it.date}
+                .thenBy { it.time }))
+        scheduleAdapter = ScheduleAdapter(this, list)
         binding.scheduleList.layoutManager = LinearLayoutManager(applicationContext,
             LinearLayoutManager.VERTICAL,
             false)

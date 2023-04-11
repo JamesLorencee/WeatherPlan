@@ -16,12 +16,17 @@ import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityHomeBinding
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.utility.SharedPreferencesUtility
 import java.net.URL
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 @Suppress("DEPRECATION")
 class HomeActivity : AppCompatActivity(), ScheduleListener {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var scheduleAdapter: ScheduleAdapter
+    private lateinit var scheduleList: ArrayList<Schedule>
+    private lateinit var dynamicList: ArrayList<Schedule>
     private lateinit var scheduleDAO: ScheduleDAO
     private lateinit var sharedPreferences: SharedPreferencesUtility
 
@@ -58,11 +63,46 @@ class HomeActivity : AppCompatActivity(), ScheduleListener {
     }
 
     override fun onSchedulesReceived(scheduleList: ArrayList<Schedule>) {
-        scheduleAdapter = ScheduleAdapter(this, scheduleList)
+        this.scheduleList = scheduleList
+        val date = Date(binding.calendarHome.date)
+
+        dynamicList = getFilteredListByCalendarView(
+            scheduleList,
+            date.year + 1900,
+            date.month,
+            date.date
+        )
+
+        scheduleAdapter = ScheduleAdapter(this, dynamicList)
         binding.scheduleList.layoutManager = LinearLayoutManager(applicationContext,
             LinearLayoutManager.VERTICAL,
             false)
         binding.scheduleList.adapter = scheduleAdapter
+
+        binding.calendarHome.setOnDateChangeListener { calendarView, year, month, day ->
+            dynamicList = getFilteredListByCalendarView(this.scheduleList, year, month, day)
+            println(dynamicList.size)
+            scheduleAdapter = ScheduleAdapter(this, dynamicList)
+            binding.scheduleList.adapter = scheduleAdapter
+        }
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun getFilteredListByCalendarView (scheduleList: ArrayList<Schedule>, year: Int, month: Int, day: Int): ArrayList<Schedule> {
+        val calendar = Calendar.getInstance()
+        calendar.set(year, month, day)
+        val dateString = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
+        val filteredList = ArrayList<Schedule>()
+
+        for (schedule in scheduleList) {
+            if (schedule.date.equals(dateString)) {
+                filteredList.add(schedule)
+            }
+        }
+
+        return ArrayList(filteredList
+            .sortedWith(compareBy<Schedule> {it.date}
+            .thenBy { it.time }))
     }
 
 // CLASS TO CALL THE API VARIABLES
