@@ -105,6 +105,7 @@ class MainActivity : AppCompatActivity() {
                     val newUser = User()
                     newUser.id = auth.currentUser!!.uid
                     newUser.email = auth.currentUser!!.email
+                    newUser.username = auth.currentUser!!.displayName
                     userDAO.addUser(newUser)
                 }
 
