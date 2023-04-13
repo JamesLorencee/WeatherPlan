@@ -66,13 +66,13 @@ class EditScheduleActivity : AppCompatActivity(), ScheduleListener {
             if (binding.etEditTitle.text.isNotEmpty()
                 && binding.etEditLocation.text.isNotEmpty()
             ) {
-                val intent = Intent()
+                val editIntent = Intent()
 
                 val calendar: Calendar = Calendar.getInstance()
                 calendar.set(binding.datePicker.year, binding.datePicker.month, binding.datePicker.dayOfMonth, binding.editTimePicker.hour, binding.editTimePicker.minute)
 
                 val schedule = Schedule()
-                schedule.id = this.intent.getIntExtra("id", -999)
+                schedule.id = intent.getIntExtra("id", -999)
                 schedule.title = binding.etEditTitle.text.toString()
                 schedule.location = binding.etEditLocation.text.toString()
                 schedule.event = Schedule().getEnumType(binding.editEventTypeSpinner.selectedItem.toString())
@@ -80,34 +80,40 @@ class EditScheduleActivity : AppCompatActivity(), ScheduleListener {
                 schedule.time = SimpleDateFormat("HH:mm").format(calendar.time)
                 schedule.notes = binding.etEditNotes.text.toString()
 
-                scheduleAdapter.editSchedule(schedule, this.intent.getIntExtra("position", -999))
+                scheduleAdapter.editSchedule(schedule, intent.getIntExtra("position", -999))
 
-                intent.putExtra("id", this.intent.getIntExtra("id", -999))
-                intent.putExtra("title", schedule.title)
-                intent.putExtra("location", schedule.location)
-                intent.putExtra("eventtype", schedule.event.toString())
-                intent.putExtra("time", schedule.time)
-                intent.putExtra("date", schedule.date)
-                intent.putExtra("notes", schedule.notes)
-                intent.putExtra("position", this.intent.getIntExtra("position", -999))
-                setResult(1, intent)
+                editIntent.putExtra("id", intent.getIntExtra("id", -999))
+                editIntent.putExtra("title", schedule.title)
+                editIntent.putExtra("location", schedule.location)
+                editIntent.putExtra("eventtype", schedule.event.toString())
+                editIntent.putExtra("time", schedule.time)
+                editIntent.putExtra("date", schedule.date)
+                editIntent.putExtra("notes", schedule.notes)
+                editIntent.putExtra("position", intent.getIntExtra("position", -999))
+                setResult(1, editIntent)
                 finish()
             }
         }
 
         binding.editSchedCancelBtn.setOnClickListener {
-            val intent = Intent()
-            intent.putExtra("id", this.intent.getIntExtra("id", -999))
-            intent.putExtra("title", this.intent.getStringExtra("title"))
-            intent.putExtra("location", this.intent.getStringExtra("location"))
-            intent.putExtra("eventtype", this.intent.getStringExtra("eventtype"))
-            intent.putExtra("time", this.intent.getStringExtra("time"))
-            intent.putExtra("date", this.intent.getStringExtra("date"))
-            intent.putExtra("notes", this.intent.getStringExtra("notes"))
-            intent.putExtra("position", this.intent.getIntExtra("position", -999))
-            setResult(0, intent)
+            val cancelIntent = Intent()
+            cancelIntent.putExtra("id", intent.getIntExtra("id", -999))
+            cancelIntent.putExtra("title", intent.getStringExtra("title"))
+            cancelIntent.putExtra("location", intent.getStringExtra("location"))
+            cancelIntent.putExtra("eventtype", intent.getStringExtra("eventtype"))
+            cancelIntent.putExtra("time", intent.getStringExtra("time"))
+            cancelIntent.putExtra("date", intent.getStringExtra("date"))
+            cancelIntent.putExtra("notes", intent.getStringExtra("notes"))
+            cancelIntent.putExtra("position", intent.getIntExtra("position", -999))
+            setResult(0, cancelIntent)
             finish()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        println(intent.getStringExtra("title"))
     }
 
     override fun onSchedulesReceived(scheduleList: ArrayList<Schedule>) {

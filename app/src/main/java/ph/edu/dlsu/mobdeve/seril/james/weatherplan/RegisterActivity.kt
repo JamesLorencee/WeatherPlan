@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.UserDAOFirebaseImplementation
-import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.User
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityRegisterBinding
 
@@ -48,8 +48,13 @@ class RegisterActivity : AppCompatActivity() {
                             newUser.id = it.result.user!!.uid
                             newUser.username = username
                             newUser.email = it.result.user!!.email
-                            newUser.scheduleList = ArrayList<Schedule>()
+                            newUser.scheduleList = ArrayList()
                             userDAO.addUser(newUser)
+
+                            val profileChangeRequest = userProfileChangeRequest {
+                                displayName = username
+                            }
+                            firebaseAuth.currentUser!!.updateProfile(profileChangeRequest)
 
                             val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)

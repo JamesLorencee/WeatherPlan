@@ -79,7 +79,7 @@ class HomeActivity : AppCompatActivity(), ScheduleListener {
             false)
         binding.scheduleList.adapter = scheduleAdapter
 
-        binding.calendarHome.setOnDateChangeListener { calendarView, year, month, day ->
+        binding.calendarHome.setOnDateChangeListener { _, year, month, day ->
             dynamicList = getFilteredListByCalendarView(this.scheduleList, year, month, day)
             println(dynamicList.size)
             scheduleAdapter = ScheduleAdapter(this, dynamicList)

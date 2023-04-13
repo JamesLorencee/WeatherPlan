@@ -28,17 +28,19 @@ class ViewScheduleActivity : AppCompatActivity(), ScheduleListener {
     private lateinit var scheduleAdapter: ScheduleAdapter
     private lateinit var sharedPreferences: SharedPreferencesUtility
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "SimpleDateFormat")
     private val launchEdit = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {result ->
         val data = result.data
 
-        binding.viewTitle.text = data!!.getStringExtra("title")
+        val datetime = SimpleDateFormat("yyyy-MM-dd HH:mm").parse("${data!!.getStringExtra("date")} ${data.getStringExtra("time")}")
+
+        binding.viewTitle.text = data.getStringExtra("title")
         binding.viewEventType.text = data.getStringExtra("eventtype")
         binding.viewLocation.text = data.getStringExtra("location")
-        binding.viewTime.text = data.getStringExtra("time")
-        binding.viewDate.text = data.getStringExtra("date")
+        binding.viewTime.text = SimpleDateFormat("hh:mm a").format(datetime!!)
+        binding.viewDate.text = SimpleDateFormat("MMMM dd, yyyy").format(datetime)
         binding.viewNotes.text = "Notes:\n${intent.getStringExtra("notes")}"
     }
 
@@ -58,7 +60,7 @@ class ViewScheduleActivity : AppCompatActivity(), ScheduleListener {
         binding.viewTitle.text = intent.getStringExtra("title")
         binding.viewEventType.text = intent.getStringExtra("eventtype")
         binding.viewLocation.text = intent.getStringExtra("location")
-        binding.viewTime.text = SimpleDateFormat("hh:m a").format(datetime!!)
+        binding.viewTime.text = SimpleDateFormat("hh:mm a").format(datetime!!)
         binding.viewDate.text = SimpleDateFormat("MMMM dd, yyyy").format(datetime)
         binding.viewNotes.text = "Notes:\n${intent.getStringExtra("notes")}"
 
