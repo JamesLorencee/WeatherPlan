@@ -53,7 +53,7 @@ class ScheduleAdapter (private val context: Context,
                     val datetime = SimpleDateFormat("yyyy-MM-dd HH:mm").parse("${schedule.date} ${schedule.time}")
 
                     itemBinding.titleTv.text = schedule.title
-                    itemBinding.locationTv.text = adapterPosition.toString()
+                    itemBinding.locationTv.text = schedule.location
                     itemBinding.dateTv.text = SimpleDateFormat("MMMM dd, yyyy").format(datetime!!)
                     itemBinding.timeTv.text = SimpleDateFormat("hh:mm a").format(datetime)
                 }
