@@ -18,6 +18,7 @@
 
         <TextView
             android:id="@+id/titleTv"
+            android:text="dinner"
             android:layout_width="227dp"
             android:layout_height="41dp"
             android:layout_marginTop="0dp"
@@ -26,7 +27,7 @@
             android:maxLines="1"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +37,7 @@
             android:layout_width="219dp"
             android:layout_height="30dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginEnd="0dp"
             android:fontFamily="sans-serif-medium"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -50,7 +51,7 @@
         <TextView
             android:id="@+id/dateTv"
             android:layout_width="114dp"
-            android:layout_height="49dp"
+            android:layout_height="35dp"
             android:layout_marginTop="4dp"
             android:fontFamily="sans-serif-medium"
             android:textAlignment="center"
