@@ -29,7 +29,7 @@ class Schedule () {
         return when (s.uppercase()) {
             "EVENT" -> EventType.EVENT
             "MEETING" -> EventType.MEETING
-            "SOCIAL_GATHERING" -> EventType.SOCIAL_GATHERING
+            "SOCIAL GATHERING" -> EventType.SOCIAL_GATHERING
             "CLASS" -> EventType.CLASS
             "HOLIDAY" -> EventType.HOLIDAY
             "MISCELLANEOUS" -> EventType.MISCELLANEOUS
