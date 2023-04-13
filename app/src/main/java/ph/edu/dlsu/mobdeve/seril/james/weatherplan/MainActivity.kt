@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                         val intent = Intent(this, HomeActivity::class.java)
                         startActivity(intent)
                     } else {
-                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Invalid Email or Password", Toast.LENGTH_SHORT).show()
                     }
                 }
             } else {
