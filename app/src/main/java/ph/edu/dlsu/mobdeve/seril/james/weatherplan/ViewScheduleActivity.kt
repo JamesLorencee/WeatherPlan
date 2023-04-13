@@ -12,7 +12,7 @@ import com.facebook.share.model.ShareHashtag
 import com.facebook.share.model.SharePhoto
 import com.facebook.share.model.SharePhotoContent
 import com.facebook.share.widget.ShareDialog
-import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFFirebaseImplementation
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFirebaseImplementation
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleListener
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.ScheduleAdapter
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
@@ -48,7 +48,7 @@ class ViewScheduleActivity : AppCompatActivity(), ScheduleListener {
         binding = ActivityViewScheduleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val scheduleDAO = ScheduleDAOFFirebaseImplementation()
+        val scheduleDAO = ScheduleDAOFirebaseImplementation()
         scheduleDAO.getSchedules(this)
 
         sharedPreferences = SharedPreferencesUtility(applicationContext)

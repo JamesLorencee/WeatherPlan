@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.json.JSONObject
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAO
-import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFFirebaseImplementation
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFirebaseImplementation
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleListener
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.ScheduleAdapter
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
@@ -37,7 +37,7 @@ class HomeActivity : AppCompatActivity(), ScheduleListener {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        scheduleDAO = ScheduleDAOFFirebaseImplementation()
+        scheduleDAO = ScheduleDAOFirebaseImplementation()
         scheduleDAO.getSchedules(this)
 
         sharedPreferences = SharedPreferencesUtility(applicationContext)

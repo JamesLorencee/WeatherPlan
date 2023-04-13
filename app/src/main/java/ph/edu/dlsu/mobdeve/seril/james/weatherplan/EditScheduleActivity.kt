@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
-import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFFirebaseImplementation
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFirebaseImplementation
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleListener
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.ScheduleAdapter
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
@@ -26,7 +26,7 @@ class EditScheduleActivity : AppCompatActivity(), ScheduleListener {
         binding = ActivityEditScheduleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val scheduleDAO = ScheduleDAOFFirebaseImplementation()
+        val scheduleDAO = ScheduleDAOFirebaseImplementation()
         scheduleDAO.getSchedules(this)
 
         // access the items of the list

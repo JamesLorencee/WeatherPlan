@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFFirebaseImplementation
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFirebaseImplementation
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleListener
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.ScheduleAdapter
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
@@ -22,7 +22,7 @@ class ListActivity : AppCompatActivity(), ScheduleListener {
         binding = ActivityListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val scheduleDAO = ScheduleDAOFFirebaseImplementation()
+        val scheduleDAO = ScheduleDAOFirebaseImplementation()
         scheduleDAO.getSchedules(this)
 
         // Directs to HomeActivity

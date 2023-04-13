@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.ViewScheduleActivity
-import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFFirebaseImplementation
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFirebaseImplementation
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ItemListBinding
 import java.text.SimpleDateFormat
@@ -60,7 +60,7 @@ class ScheduleAdapter (private val context: Context,
             }
 
     fun addSchedule(schedule: Schedule) {
-        val scheduleDAO = ScheduleDAOFFirebaseImplementation()
+        val scheduleDAO = ScheduleDAOFirebaseImplementation()
         scheduleDAO.addSchedule(schedule)
 
         scheduleList.add(scheduleList.size, schedule)
@@ -76,7 +76,7 @@ class ScheduleAdapter (private val context: Context,
                 pos = index
         }
 
-        val scheduleDAO = ScheduleDAOFFirebaseImplementation()
+        val scheduleDAO = ScheduleDAOFirebaseImplementation()
         scheduleDAO.removeSchedule(scheduleList[pos].id!!)
 
         scheduleList.removeAt(pos)
@@ -84,7 +84,7 @@ class ScheduleAdapter (private val context: Context,
     }
 
     fun editSchedule(schedule: Schedule, position: Int) {
-        val scheduleDAO = ScheduleDAOFFirebaseImplementation()
+        val scheduleDAO = ScheduleDAOFirebaseImplementation()
         scheduleDAO.updateSchedule(schedule)
 
         notifyItemChanged(position)
