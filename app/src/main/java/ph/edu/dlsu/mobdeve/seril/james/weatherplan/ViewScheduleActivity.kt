@@ -4,13 +4,11 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.share.model.ShareHashtag
-import com.facebook.share.model.ShareLinkContent
 import com.facebook.share.model.SharePhoto
 import com.facebook.share.model.SharePhotoContent
 import com.facebook.share.widget.ShareDialog
@@ -98,7 +96,7 @@ class ViewScheduleActivity : AppCompatActivity(), ScheduleListener {
         binding.editScheduleBtn.setOnClickListener{
             val goToEditScheduleActivity = Intent(this, EditScheduleActivity::class.java)
 
-            goToEditScheduleActivity.putExtra("id", this.intent.getIntExtra("id", -999))
+            goToEditScheduleActivity.putExtra("id", this.intent.getStringExtra("id"))
             goToEditScheduleActivity.putExtra("title", this.intent.getStringExtra("title"))
             goToEditScheduleActivity.putExtra("eventtype", this.intent.getStringExtra("eventtype"))
             goToEditScheduleActivity.putExtra("location", this.intent.getStringExtra("location"))

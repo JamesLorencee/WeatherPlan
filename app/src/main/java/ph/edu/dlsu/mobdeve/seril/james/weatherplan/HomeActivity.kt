@@ -1,6 +1,8 @@
 package ph.edu.dlsu.mobdeve.seril.james.weatherplan
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
@@ -14,11 +16,11 @@ import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleListener
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.ScheduleAdapter
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model.Schedule
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.ActivityHomeBinding
+import ph.edu.dlsu.mobdeve.seril.james.weatherplan.databinding.DialogueCancelScheduleBinding
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.utility.SharedPreferencesUtility
 import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 @Suppress("DEPRECATION")
 class HomeActivity : AppCompatActivity(), ScheduleListener {
@@ -44,19 +46,19 @@ class HomeActivity : AppCompatActivity(), ScheduleListener {
         WeatherTask().execute()
 
         // When clicked, will move to LIST ACTIVITY page //
-        binding.optionsMenu.listTv.setOnClickListener{
+        binding.optionsMenu.listTv.setOnClickListener {
             val intent = Intent(this, ListActivity::class.java)
             startActivity(intent)
         }
 
         // When clicked, will move to ADD ACTIVITY page //
-        binding.optionsMenu.listAddTv.setOnClickListener{
+        binding.optionsMenu.listAddTv.setOnClickListener {
             val intent = Intent(this, AddScheduleActivity::class.java)
             startActivity(intent)
         }
 
         // When clicked, will move to ACCOUNT DETAILS page //
-        binding.optionsMenu.listAccountTv.setOnClickListener{
+        binding.optionsMenu.listAccountTv.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
@@ -74,9 +76,11 @@ class HomeActivity : AppCompatActivity(), ScheduleListener {
         )
 
         scheduleAdapter = ScheduleAdapter(this, dynamicList)
-        binding.scheduleList.layoutManager = LinearLayoutManager(applicationContext,
+        binding.scheduleList.layoutManager = LinearLayoutManager(
+            applicationContext,
             LinearLayoutManager.VERTICAL,
-            false)
+            false
+        )
         binding.scheduleList.adapter = scheduleAdapter
 
         binding.calendarHome.setOnDateChangeListener { _, year, month, day ->
@@ -87,8 +91,42 @@ class HomeActivity : AppCompatActivity(), ScheduleListener {
         }
     }
 
+    @SuppressLint("SimpleDateFormat", "SetTextI18n")
+    private fun showRainDialogue(weatherDescription: String): Dialog {
+        return this.let {
+            val builder = AlertDialog.Builder(it)
+            val dialogueCancelScheduleBinding: DialogueCancelScheduleBinding =
+                DialogueCancelScheduleBinding.inflate(it.layoutInflater)
+
+            dialogueCancelScheduleBinding.rainNotifMessage.text = "Seems like there will be $weatherDescription. Would you like to cancel all your schedules for today?"
+
+            with(builder) {
+                setPositiveButton("YES, CANCEL") { _, _ ->
+                    val date = Calendar.getInstance()
+                    val todayString = SimpleDateFormat("yyyy-MM-dd").format(date.time)
+                    for (schedule in scheduleList) {
+                        if (schedule.date.equals(todayString)) {
+                            scheduleDAO.removeSchedule(schedule.id!!)
+                            scheduleDAO.getSchedules(this@HomeActivity)
+                        }
+                    }
+                }
+                setNegativeButton("NO, IGNORE") { _, _ ->
+
+                }
+                setView(dialogueCancelScheduleBinding.root)
+                create()
+            }
+        } ?: throw java.lang.IllegalStateException("Activity cannot be null")
+    }
+
     @SuppressLint("SimpleDateFormat")
-    fun getFilteredListByCalendarView (scheduleList: ArrayList<Schedule>, year: Int, month: Int, day: Int): ArrayList<Schedule> {
+    fun getFilteredListByCalendarView(
+        scheduleList: ArrayList<Schedule>,
+        year: Int,
+        month: Int,
+        day: Int
+    ): ArrayList<Schedule> {
         val calendar = Calendar.getInstance()
         calendar.set(year, month, day)
         val dateString = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
@@ -101,27 +139,29 @@ class HomeActivity : AppCompatActivity(), ScheduleListener {
         }
 
         return ArrayList(filteredList
-            .sortedWith(compareBy<Schedule> {it.date}
-            .thenBy { it.time }))
+            .sortedWith(compareBy<Schedule> { it.date }
+                .thenBy { it.time })
+        )
     }
 
-// CLASS TO CALL THE API VARIABLES
+    // CLASS TO CALL THE API VARIABLES
     @SuppressLint("StaticFieldLeak")
-    inner class WeatherTask() : AsyncTask<String, Void, String>(){
+    inner class WeatherTask() : AsyncTask<String, Void, String>() {
 
         @Deprecated("Deprecated in Java")
         override fun onPreExecute() {
             super.onPreExecute()
-            Log.d ("Weather", "OnPreExecute")
+            Log.d("Weather", "OnPreExecute")
         }
+
         @Deprecated("Deprecated in Java")
         override fun doInBackground(vararg p0: String?): String? {
             var response: String?
             try {
-                response = URL("https://api.openweathermap.org/data/2.5/forecast?q=manila,ph&units=metric&appid=7836b1b288c389a89ebe52ac3012ff0a")
-                    .readText(Charsets.UTF_8)
-            }
-            catch (e: Exception){
+                response =
+                    URL("https://api.openweathermap.org/data/2.5/forecast?q=manila,ph&units=metric&appid=7836b1b288c389a89ebe52ac3012ff0a")
+                        .readText(Charsets.UTF_8)
+            } catch (e: Exception) {
                 response = null
             }
             return response
@@ -130,7 +170,7 @@ class HomeActivity : AppCompatActivity(), ScheduleListener {
         @Deprecated("Deprecated in Java")
         override fun onPostExecute(result: String) {
             super.onPostExecute(result)
-            try{
+            try {
                 val jsonObj = JSONObject(result).getJSONArray("list").getJSONObject(1)
                 val main = jsonObj.getJSONObject("main")
                 val weather = jsonObj.getJSONArray("weather").getJSONObject(0)
@@ -143,11 +183,17 @@ class HomeActivity : AppCompatActivity(), ScheduleListener {
                 sharedPreferences.setStringPrefs("weatherTemperature", temp)
                 sharedPreferences.setStringPrefs("weatherDescription", weatherDescription)
 
-                Log.d ("Weather", "OnPostExecute")
-            }
-            catch(e : Exception){
+                if (weatherDescription.contains("rain") && !sharedPreferences.getBooleanPrefs("showDialogue")) {
+                    showRainDialogue(weatherDescription).show()
+                    sharedPreferences.setBooleanPrefs("showDialogue", true)
+                }
+
+                Log.d("Weather", "OnPostExecute")
+            } catch (e: Exception) {
                 println(JSONObject(result).getJSONArray("list"))
-                println(JSONObject(result).getJSONArray("list").getJSONObject(1).getJSONObject("main"))
+                println(
+                    JSONObject(result).getJSONArray("list").getJSONObject(1).getJSONObject("main")
+                )
             }
         }
 

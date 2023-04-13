@@ -20,4 +20,14 @@ class SharedPreferencesUtility(context: Context) {
     fun getStringPrefs(key: String?): String? {
         return appPreferences!!.getString(key, "")
     }
+
+    fun setBooleanPrefs(key: String?, value: Boolean) {
+        val prefsEditor = appPreferences!!.edit()
+        prefsEditor.putBoolean(key, value)
+        prefsEditor.apply()
+    }
+
+    fun getBooleanPrefs(key: String?): Boolean {
+        return appPreferences!!.getBoolean(key, false)
+    }
 }

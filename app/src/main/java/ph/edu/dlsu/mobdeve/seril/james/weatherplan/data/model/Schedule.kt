@@ -5,7 +5,7 @@ package ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.model
     time must be in "hh:mm" format
 */
 class Schedule () {
-    var id:Int? = null
+    var id:String? = null
     var title: String? = null
     var location: String? = null
     var event: EventType = EventType.MISCELLANEOUS
@@ -22,7 +22,7 @@ class Schedule () {
         MISCELLANEOUS;
     }
 
-    constructor(id: Int?, title: String?, location: String?, event: EventType, date:String?, time:String?, notes: String?): this ()
+    constructor(id: String?, title: String?, location: String?, event: EventType, date:String?, time:String?, notes: String?): this ()
 
 
     fun getEnumType (s: String): EventType {

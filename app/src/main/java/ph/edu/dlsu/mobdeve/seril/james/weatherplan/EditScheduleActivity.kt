@@ -72,7 +72,7 @@ class EditScheduleActivity : AppCompatActivity(), ScheduleListener {
                 calendar.set(binding.datePicker.year, binding.datePicker.month, binding.datePicker.dayOfMonth, binding.editTimePicker.hour, binding.editTimePicker.minute)
 
                 val schedule = Schedule()
-                schedule.id = intent.getIntExtra("id", -999)
+                schedule.id = intent.getStringExtra("id")
                 schedule.title = binding.etEditTitle.text.toString()
                 schedule.location = binding.etEditLocation.text.toString()
                 schedule.event = Schedule().getEnumType(binding.editEventTypeSpinner.selectedItem.toString())
@@ -82,7 +82,7 @@ class EditScheduleActivity : AppCompatActivity(), ScheduleListener {
 
                 scheduleAdapter.editSchedule(schedule, intent.getIntExtra("position", -999))
 
-                editIntent.putExtra("id", intent.getIntExtra("id", -999))
+                editIntent.putExtra("id", intent.getStringExtra("id"))
                 editIntent.putExtra("title", schedule.title)
                 editIntent.putExtra("location", schedule.location)
                 editIntent.putExtra("eventtype", schedule.event.toString())
@@ -97,7 +97,7 @@ class EditScheduleActivity : AppCompatActivity(), ScheduleListener {
 
         binding.editSchedCancelBtn.setOnClickListener {
             val cancelIntent = Intent()
-            cancelIntent.putExtra("id", intent.getIntExtra("id", -999))
+            cancelIntent.putExtra("id", intent.getStringExtra("id"))
             cancelIntent.putExtra("title", intent.getStringExtra("title"))
             cancelIntent.putExtra("location", intent.getStringExtra("location"))
             cancelIntent.putExtra("eventtype", intent.getStringExtra("eventtype"))

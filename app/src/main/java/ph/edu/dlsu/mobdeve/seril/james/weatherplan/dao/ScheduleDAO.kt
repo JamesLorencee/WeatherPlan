@@ -13,7 +13,7 @@ interface ScheduleListener {
 
 interface ScheduleDAO {
     fun addSchedule(schedule: Schedule)
-    fun removeSchedule(scheduleId: Int)
+    fun removeSchedule(scheduleId: String)
     fun getSchedules(listener: ScheduleListener)
     fun updateSchedule(schedule: Schedule)
 }
@@ -117,14 +117,14 @@ class ScheduleDAOFFirebaseImplementation : ScheduleDAO{
         firebase = Firebase.database
         val scheduleRoot = Firebase.database.reference.child("root").child("users").child(auth.currentUser!!.uid).child("scheduleList")
 
-        scheduleRoot.child(schedule.id.toString()).setValue(schedule)
+        scheduleRoot.child(schedule.id!!).setValue(schedule)
     }
 
-    override fun removeSchedule(scheduleId: Int) {
+    override fun removeSchedule(scheduleId: String) {
         firebase = Firebase.database
         val scheduleRoot = Firebase.database.reference.child("root").child("users").child(auth.currentUser!!.uid).child("scheduleList")
 
-        scheduleRoot.child(scheduleId.toString()).removeValue()
+        scheduleRoot.child(scheduleId).removeValue()
     }
 
     override fun getSchedules(listener: ScheduleListener) {

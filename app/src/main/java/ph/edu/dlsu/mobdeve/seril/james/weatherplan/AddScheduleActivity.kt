@@ -57,7 +57,7 @@ class AddScheduleActivity : AppCompatActivity(), ScheduleListener {
                 calendar.set(binding.datePicker.year, binding.datePicker.month, binding.datePicker.dayOfMonth, binding.addTimePicker.hour, binding.addTimePicker.minute)
 
                 val schedule = Schedule()
-                schedule.id = scheduleAdapter.itemCount
+                schedule.id = Calendar.getInstance().time.time.toString()
                 schedule.title = binding.etAddTitle.text.toString()
                 schedule.location = binding.etAddLocation.text.toString()
                 schedule.event = Schedule().getEnumType(binding.eventTypeSpinner.selectedItem.toString())
