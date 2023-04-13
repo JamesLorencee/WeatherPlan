@@ -34,7 +34,7 @@
         <TextView
             android:id="@+id/locationTv"
             android:layout_width="219dp"
-            android:layout_height="22dp"
+            android:layout_height="30dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="4dp"
             android:fontFamily="sans-serif-medium"
