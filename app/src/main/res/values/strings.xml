@@ -25,4 +25,7 @@
         <item>MISCELLANEOUS</item>
     </string-array>
 
+    <string name="facebook_app_id">756545792511819</string>
+    <string name="facebook_client_token">dcded0a357a77100bfa28e75986e7d84</string>
+
 </resources>

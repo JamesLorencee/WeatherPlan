@@ -2,9 +2,18 @@ package ph.edu.dlsu.mobdeve.seril.james.weatherplan
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.facebook.share.model.ShareHashtag
+import com.facebook.share.model.ShareLinkContent
+import com.facebook.share.model.SharePhoto
+import com.facebook.share.model.SharePhotoContent
+import com.facebook.share.widget.ShareDialog
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleDAOFFirebaseImplementation
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.dao.ScheduleListener
 import ph.edu.dlsu.mobdeve.seril.james.weatherplan.data.ScheduleAdapter
@@ -100,10 +109,38 @@ class ViewScheduleActivity : AppCompatActivity(), ScheduleListener {
         }
 
         binding.editScheduleBtn.isEnabled = false
-    }
 
+        binding.shareScheduleBtn.setOnClickListener{
+
+            val bitmap = getBitmapFromView(window.decorView.rootView)
+
+            // Create a SharePhoto instance from the bitmap
+            val photo = SharePhoto.Builder()
+                .setBitmap(bitmap)
+                .build()
+
+            // Create a SharePhotoContent instance and set the content of the shared message
+            val shareContent = SharePhotoContent.Builder()
+                .addPhoto(photo)
+                .setShareHashtag(ShareHashtag.Builder().setHashtag("Just created a schedule using #WeatherPlan").build())
+                .build()
+
+            // Show the ShareDialog with the SharePhotoContent
+            val shareDialog = ShareDialog(this)
+            shareDialog.show(shareContent)
+        }
+    }
+    // Helper function to get a bitmap of a view
+    private fun getBitmapFromView(view: View): Bitmap {
+        val bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        view.draw(canvas)
+        return bitmap
+    }
     override fun onSchedulesReceived(scheduleList: ArrayList<Schedule>) {
         scheduleAdapter = ScheduleAdapter(this, scheduleList)
         binding.editScheduleBtn.isEnabled = true
     }
+
+
 }
