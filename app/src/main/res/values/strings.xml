@@ -20,6 +20,7 @@
     <string-array name="EventType">
         <item>EVENT</item>
         <item>MEETING</item>
+        <item>SOCIAL GATHERING</item>
         <item>CLASS</item>
         <item>HOLIDAY</item>
         <item>MISCELLANEOUS</item>
