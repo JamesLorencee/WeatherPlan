@@ -48,11 +48,12 @@ class ListActivity : AppCompatActivity(), ScheduleListener {
 
     @SuppressLint("SimpleDateFormat")
     override fun onSchedulesReceived(scheduleList: ArrayList<Schedule>) {
-        val nowString = SimpleDateFormat("yyyy-MM-dd HH:mm").format(Calendar.getInstance().time)
+        val nowString = SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().time)
         val list: ArrayList<Schedule> = ArrayList(scheduleList
-            .filter { it.date + " " + it.time > nowString }
+            .filter { it.date!! >= nowString }
             .sortedWith(compareBy<Schedule> {it.date}
                 .thenBy { it.time }))
+
         scheduleAdapter = ScheduleAdapter(this, list)
         binding.scheduleList.layoutManager = LinearLayoutManager(applicationContext,
             LinearLayoutManager.VERTICAL,

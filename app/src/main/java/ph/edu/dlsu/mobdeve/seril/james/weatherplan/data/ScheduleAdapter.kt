@@ -3,6 +3,7 @@ package ph.edu.dlsu.mobdeve.seril.james.weatherplan.data
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -52,7 +53,7 @@ class ScheduleAdapter (private val context: Context,
                     val datetime = SimpleDateFormat("yyyy-MM-dd HH:mm").parse("${schedule.date} ${schedule.time}")
 
                     itemBinding.titleTv.text = schedule.title
-                    itemBinding.locationTv.text = schedule.location
+                    itemBinding.locationTv.text = adapterPosition.toString()
                     itemBinding.dateTv.text = SimpleDateFormat("MMMM dd, yyyy").format(datetime!!)
                     itemBinding.timeTv.text = SimpleDateFormat("hh:mm a").format(datetime)
                 }
@@ -64,14 +65,22 @@ class ScheduleAdapter (private val context: Context,
 
         scheduleList.add(scheduleList.size, schedule)
         notifyItemInserted(scheduleList.size)
+        Log.d("ADD", scheduleList.size.toString())
     }
 
-    fun deleteSchedule(position: Int) {
-        val scheduleDAO = ScheduleDAOFFirebaseImplementation()
-        scheduleDAO.removeSchedule(scheduleList[position].id!!)
+    fun deleteSchedule(scheduleID: String) {
+        var pos: Int = -1
 
-        scheduleList.removeAt(position)
-        notifyItemRemoved(position)
+        scheduleList.forEachIndexed {index, it ->
+            if (it.id == scheduleID)
+                pos = index
+        }
+
+        val scheduleDAO = ScheduleDAOFFirebaseImplementation()
+        scheduleDAO.removeSchedule(scheduleList[pos].id!!)
+
+        scheduleList.removeAt(pos)
+        notifyItemRemoved(pos)
     }
 
     fun editSchedule(schedule: Schedule, position: Int) {

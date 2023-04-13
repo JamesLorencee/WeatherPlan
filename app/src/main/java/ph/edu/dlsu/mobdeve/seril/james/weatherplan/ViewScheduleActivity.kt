@@ -86,7 +86,7 @@ class ViewScheduleActivity : AppCompatActivity(), ScheduleListener {
         }
 
         binding.cancelScheduleBtn.setOnClickListener{
-            scheduleAdapter.deleteSchedule(intent.getIntExtra("position", -99))
+            scheduleAdapter.deleteSchedule(intent.getStringExtra("id")!!)
 
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
