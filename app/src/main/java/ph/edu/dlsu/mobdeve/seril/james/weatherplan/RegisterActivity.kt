@@ -57,6 +57,7 @@ class RegisterActivity : AppCompatActivity() {
                             firebaseAuth.currentUser!!.updateProfile(profileChangeRequest)
 
                             val intent = Intent(this, MainActivity::class.java)
+                            Toast.makeText(this, "Account Successfully Created", Toast.LENGTH_SHORT).show()
                             startActivity(intent)
                         }else{
                             Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()

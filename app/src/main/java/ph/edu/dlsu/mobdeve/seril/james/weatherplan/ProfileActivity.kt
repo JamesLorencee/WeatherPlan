@@ -20,6 +20,7 @@ class ProfileActivity : AppCompatActivity() {
         binding.userEmailTv.text = auth.currentUser!!.email
         binding.usernameTv.text = auth.currentUser!!.displayName
 
+
         // LOGOUT FUNCTION here (need to terminate user data. No Proper function yet
         auth = FirebaseAuth.getInstance()
         binding.logoutProfileBtn.setOnClickListener{

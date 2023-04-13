@@ -23,6 +23,9 @@ class EditProfileActivity : AppCompatActivity() {
         binding.etEditUsername.setText(firebaseAuth.currentUser!!.displayName)
         binding.etEditEmail.setText(firebaseAuth.currentUser!!.email)
 
+        binding.usernameTv.text = firebaseAuth.currentUser!!.displayName
+        binding.editUserEmailTv.text = firebaseAuth.currentUser!!.email
+
         val currentUser = FirebaseAuth.getInstance().currentUser
 
         binding.editProfileSaveBtn.setOnClickListener {
